@@ -1,7 +1,7 @@
 import Link from './link'
-import Min from './min'
+import Nim from './nim'
 
 export default {
   Link,
-  Min,
+  Nim,
 }

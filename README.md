@@ -10,7 +10,7 @@
 
 5. 创建src/store/index.js编写mobx代码
 
-6. yarn add react-navigation
+6. yarn add react-navigation@2.17.0（高版本有bug）
 
 7. 创建src/index.js编写页面路由文件
 

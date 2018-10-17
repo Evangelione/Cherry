@@ -15,7 +15,7 @@ const localStyle = {
   },
 }
 
-@inject('NimStore', 'LinkAction')
+// @inject('NimStore', 'LinkAction')
 @observer
 export default class Login extends Component {
   constructor(props) {
@@ -196,7 +196,6 @@ export default class Login extends Component {
             buttonStyle={{
               backgroundColor: '#fff',
               marginVertical: 3 * RVW,
-              borderRadius: 3,
             }}
           />
         </View>

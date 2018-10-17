@@ -1,11 +1,11 @@
 import { observable, computed, action } from 'mobx'
 
-class Min {
-  @observable min = ''
+class Nim {
+  @observable nim = ''
 
   @action refresh() {
-    this.min = 'min'
+    this.nim = 'nim'
   }
 }
 
-export default new Min()
+export default new Nim()
