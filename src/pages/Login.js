@@ -3,7 +3,7 @@ import { View, Image, AsyncStorage, NetInfo, StatusBar } from 'react-native'
 import { inject, observer } from 'mobx-react/native'
 import { Input, Button } from 'react-native-elements'
 import Toast from 'react-native-easy-toast'
-import SplashScreen from "react-native-splash-screen"
+import SplashScreen from 'react-native-splash-screen'
 import { globalStyle, baseBlueColor } from '../themes'
 import { RVW } from '../utils/device'
 import MD5 from '../utils/md5'
@@ -22,7 +22,7 @@ export default class Login extends Component {
     super(props)
     this.state = {
       account: '',
-      password: ''
+      password: '',
     }
   }
 
@@ -30,14 +30,14 @@ export default class Login extends Component {
     AsyncStorage.getItem('account').then((account) => {
       if (account) {
         this.setState({
-          account
+          account,
         })
       }
     })
     AsyncStorage.getItem('password').then((password) => {
       if (password) {
         this.setState({
-          password
+          password,
         })
       }
     })
@@ -78,7 +78,7 @@ export default class Login extends Component {
       }
       return Promise.all([
         AsyncStorage.getItem('account'),
-        AsyncStorage.getItem('password')
+        AsyncStorage.getItem('password'),
       ]).then((arr) => {
         clearTimeout(this.promiseTimer)
         const [account, password] = arr
@@ -101,12 +101,12 @@ export default class Login extends Component {
 
   setAccount = (text) => {
     this.setState({
-      account: text
+      account: text,
     })
   }
   setToken = (text) => {
     this.setState({
-      password: text
+      password: text,
     })
   }
   login = () => {
@@ -156,15 +156,8 @@ export default class Login extends Component {
     return (
       // View 用以适配iPhoneX
       <View style={[globalStyle.container, globalStyle.center, localStyle.wrapper]}>
-        <StatusBar
-          translucent={true}
-          backgroundColor={'transparent'}
-        />
-        <View
-          style={{
-            width: 80 * RVW,
-          }}
-        >
+        <StatusBar translucent={true} backgroundColor={'transparent'}/>
+        <View style={{width: 80 * RVW}}>
           <View style={{marginVertical: 3 * RVW, flexDirection: 'row', justifyContent: 'center'}}>
             <Image style={{width: 50 * RVW, height: 20 * RVW}} source={require('../res/images/logo.png')}/>
           </View>

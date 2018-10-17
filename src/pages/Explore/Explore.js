@@ -14,11 +14,7 @@ export default class Explore extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar
-          barStyle='dark-content'
-          translucent={true}
-          backgroundColor='transparent'
-        />
+        <StatusBar barStyle='dark-content' translucent={true} backgroundColor='transparent'/>
         <ScrollableTabView
           style={{marginTop: BARHEIGHT}}
           renderTabBar={() => <CustomTabBar
@@ -39,6 +35,6 @@ export default class Explore extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+  },
 })

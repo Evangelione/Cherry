@@ -1,9 +1,7 @@
 import React from 'react'
 import { createStackNavigator, createMaterialTopTabNavigator, createSwitchNavigator } from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-
 import Explore from './pages/Explore/Explore'
-
 import RandomStream from './pages/RandomStream/RandomStream'
 import Mine from './pages/Mine/Mine'
 import Login from './pages/Login'
@@ -11,27 +9,27 @@ import Login from './pages/Login'
 const AppStack = createMaterialTopTabNavigator({
   Explore: {
     screen: createStackNavigator({
-      Explore: Explore
+      Explore: Explore,
     }, {
       navigationOptions: {
-        header: null
-      }
-    })
+        header: null,
+      },
+    }),
   },
   RandomStream: createStackNavigator({
     RandomStream: RandomStream,
   }, {
     navigationOptions: {
-      header: null
-    }
+      header: null,
+    },
   }),
   Mine: createStackNavigator({
     Mine: Mine,
   }, {
     navigationOptions: {
-      header: null
-    }
-  })
+      header: null,
+    },
+  }),
 }, {
   initialRouteName: 'Explore',
   swipeEnabled: true,
@@ -41,7 +39,7 @@ const AppStack = createMaterialTopTabNavigator({
     inactiveTintColor: '#ccc',
     showIcon: true,
     indicatorStyle: {
-      height: 0
+      height: 0,
     },
     tabStyle: {
       backgroundColor: 'rgba(255,255,255,0)',
@@ -55,7 +53,7 @@ const AppStack = createMaterialTopTabNavigator({
       zIndex: 10,
       elevation: 0,
     },
-    showLabel: false
+    showLabel: false,
   },
   navigationOptions: ({navigation}) => ({
     tabBarIcon: ({focused, tintColor}) => {
@@ -69,14 +67,14 @@ const AppStack = createMaterialTopTabNavigator({
         iconName = 'ios-person'
       }
       return <Ionicons name={iconName} size={26} color={tintColor}/>
-    }
-  })
+    },
+  }),
 })
 
 export default createSwitchNavigator({
   Login: Login,  //constructor 会变灰色，不知道为什么
-  App: AppStack
+  App: AppStack,
 }, {
   initialRouteName: 'Login',
-  backBehavior: false
+  backBehavior: false,
 })
