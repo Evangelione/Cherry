@@ -1,7 +1,11 @@
 import { observable, computed, action } from 'mobx'
 
 class Link {
-  cache = {queue: []}
+  @observable link = ''
+
+  @action refresh() {
+    this.link = 'link'
+  }
 }
 
 export default new Link()

@@ -1,38 +1,82 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { observer } from 'mobx-react'
-import { PropTypes } from 'mobx-react'
+import React from 'react'
+import { createStackNavigator, createMaterialTopTabNavigator, createSwitchNavigator } from 'react-navigation'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-@observer
-class Bar extends Component {
-  static propTypes = {
-    queue: PropTypes.observableArray,
-  }
+import Explore from './pages/Explore/Explore'
 
-  render() {
-    const queue = this.props.queue
-    return (
-      <View>
-        <Text>{queue.length}</Text>
-      </View>
-    )
-  }
-}
+import RandomStream from './pages/RandomStream/RandomStream'
+import Mine from './pages/Mine/Mine'
+import Login from './pages/Login'
 
+const AppStack = createMaterialTopTabNavigator({
+  Explore: {
+    screen: createStackNavigator({
+      Explore: Explore
+    }, {
+      navigationOptions: {
+        header: null
+      }
+    })
+  },
+  RandomStream: createStackNavigator({
+    RandomStream: RandomStream,
+  }, {
+    navigationOptions: {
+      header: null
+    }
+  }),
+  Mine: createStackNavigator({
+    Mine: Mine,
+  }, {
+    navigationOptions: {
+      header: null
+    }
+  })
+}, {
+  initialRouteName: 'Explore',
+  swipeEnabled: true,
+  backBehavior: false,
+  tabBarOptions: {
+    activeTintColor: '#666',
+    inactiveTintColor: '#ccc',
+    showIcon: true,
+    indicatorStyle: {
+      height: 0
+    },
+    tabStyle: {
+      backgroundColor: 'rgba(255,255,255,0)',
+    },
+    style: {
+      backgroundColor: 'rgba(255,255,255,0)',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      zIndex: 10,
+      elevation: 0,
+    },
+    showLabel: false
+  },
+  navigationOptions: ({navigation}) => ({
+    tabBarIcon: ({focused, tintColor}) => {
+      const {routeName} = navigation.state
+      let iconName
+      if (routeName === 'Explore') {
+        iconName = 'ios-compass'
+      } else if (routeName === 'RandomStream') {
+        iconName = 'ios-add-circle'
+      } else if (routeName === 'Mine') {
+        iconName = 'ios-person'
+      }
+      return <Ionicons name={iconName} size={26} color={tintColor}/>
+    }
+  })
+})
 
-class Foo extends Component {
-  static propTypes = {
-    cache: PropTypes.observableObject,
-  }
-
-  render() {
-    const cache = this.props.cache
-    return (
-      <View>
-        <Bar queue={cache.queue}></Bar>
-      </View>
-    )
-  }
-}
-
-export default Foo
+export default createSwitchNavigator({
+  Login: Login,  //constructor 会变灰色，不知道为什么
+  App: AppStack
+}, {
+  initialRouteName: 'Login',
+  backBehavior: false
+})
