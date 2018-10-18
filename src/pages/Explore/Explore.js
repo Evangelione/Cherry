@@ -14,7 +14,7 @@ export default class Explore extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle='dark-content' translucent={true} backgroundColor='transparent'/>
+        <StatusBar translucent={true} backgroundColor='transparent'/>
         <ScrollableTabView
           style={{marginTop: BARHEIGHT}}
           renderTabBar={() => <CustomTabBar

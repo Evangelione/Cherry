@@ -159,7 +159,7 @@ export default class Login extends Component {
         <StatusBar translucent={true} backgroundColor={'transparent'}/>
         <View style={{width: 80 * RVW}}>
           <View style={{marginVertical: 3 * RVW, flexDirection: 'row', justifyContent: 'center'}}>
-            <Image style={{width: 50 * RVW, height: 20 * RVW}} source={require('../res/images/logo.png')}/>
+            <Image style={{width: 50 * RVW, height: 20 * RVW}} source={require('../asset/images/logo.png')}/>
           </View>
           <Input
             inputContainerStyle={{width: 80 * RVW}}

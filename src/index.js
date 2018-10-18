@@ -38,14 +38,15 @@ const AppStack = createMaterialTopTabNavigator({
     activeTintColor: '#666',
     inactiveTintColor: '#ccc',
     showIcon: true,
-    indicatorStyle: {
-      height: 0,
-    },
+    showLabel: false,
     tabStyle: {
       backgroundColor: 'rgba(255,255,255,0)',
     },
+    indicatorStyle: {
+      height: 0,
+    },
     style: {
-      backgroundColor: 'rgba(255,255,255,0)',
+      backgroundColor: '#fff', // rgba(255,255,255,0)
       position: 'absolute',
       bottom: 0,
       left: 0,
@@ -53,7 +54,6 @@ const AppStack = createMaterialTopTabNavigator({
       zIndex: 10,
       elevation: 0,
     },
-    showLabel: false,
   },
   navigationOptions: ({navigation}) => ({
     tabBarIcon: ({focused, tintColor}) => {

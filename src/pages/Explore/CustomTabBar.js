@@ -112,7 +112,7 @@ export default class CustomTabBar extends Component {
         {
           this._renderUnderline()
         }
-        {this._renderButton(this.props.onLeftItem, require('../../res/images/title_button_search.png'))}
+        {this._renderButton(this.props.onLeftItem, require('../../asset/images/title_button_search.png'))}
       </View>
     )
   }

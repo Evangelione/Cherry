@@ -24,7 +24,8 @@ export default class Following extends Component {
   renderList = ({item}) => {
     return (
       <View style={styles.listItem}>
-        <Image style={styles.avatar} source={require('../../res/images/7B5B42DF4253AD4FB87518DF47A17FA1.jpg')}></Image>
+        <Image style={styles.avatar}
+               source={require('../../asset/images/7B5B42DF4253AD4FB87518DF47A17FA1.jpg')}></Image>
         <View style={styles.itemDetail}>
           <View style={styles.detailTop}>
             <Text>{item.name}</Text>
