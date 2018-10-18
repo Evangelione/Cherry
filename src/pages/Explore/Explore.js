@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, StyleSheet, StatusBar } from 'react-native'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 import Find from './Find'
@@ -6,7 +6,7 @@ import Following from './Following'
 import CustomTabBar from './CustomTabBar'
 
 const BARHEIGHT = StatusBar.currentHeight
-export default class Explore extends PureComponent {
+export default class Explore extends Component {
   static navigationOptions = {
     title: 'Explore',
   }

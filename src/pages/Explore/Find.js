@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import MasonryList from '@appandflow/masonry-list'
 
@@ -7,28 +7,28 @@ import { width } from '../../utils/device'
 const itemWidth = width / 2
 
 const COLORS = ['#E1B168', '#FFA177', '#D4CAA0']
-const IMAGES = ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537353581481&di=2ba5d064d84fd8bdbdb26da4d356bef2&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171219%2Feae9fc495b8542cfa426d40b43e67c1e.jpeg",
-  "http://wimg.spriteapp.cn/picture/2018/0816/28490200_774.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0816/5b74bc51752a6_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0814/5b7264c9c02a8__b.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/5b73d96d11464_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/5b7402c2b270b__b.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0816/9b8a3898a0fb11e8b438842b2b4c75ab_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/7936a088a07e11e89cbf842b2b4c75ab_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/c211bcd6a04a11e8b438842b2b4c75abcut_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/bdbbed9ea05b11e8b438842b2b4c75ab_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/28487563_225.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0816/fe6a562ca10111e891ab842b2b4c75ab_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/7ec3b5c6a06b11e88d9b842b2b4c75ab_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/04889484a07a11e89828842b2b4c75ab_wpd.jpg",
-  "http://wimg.spriteapp.cn/picture/2018/0815/5b73aae820292__b.jpg",]
+const IMAGES = ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537353581481&di=2ba5d064d84fd8bdbdb26da4d356bef2&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171219%2Feae9fc495b8542cfa426d40b43e67c1e.jpeg',
+  'http://wimg.spriteapp.cn/picture/2018/0816/28490200_774.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0816/5b74bc51752a6_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0814/5b7264c9c02a8__b.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/5b73d96d11464_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/5b7402c2b270b__b.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0816/9b8a3898a0fb11e8b438842b2b4c75ab_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/7936a088a07e11e89cbf842b2b4c75ab_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/c211bcd6a04a11e8b438842b2b4c75abcut_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/bdbbed9ea05b11e8b438842b2b4c75ab_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/28487563_225.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0816/fe6a562ca10111e891ab842b2b4c75ab_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/7ec3b5c6a06b11e88d9b842b2b4c75ab_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/04889484a07a11e89828842b2b4c75ab_wpd.jpg',
+  'http://wimg.spriteapp.cn/picture/2018/0815/5b73aae820292__b.jpg']
 const DATA = Array.from({length: 20}).map((_, i) => ({
   id: `item_${i}`,
   height: Math.round(Math.random() * 100 + 200),
   image: IMAGES[i % IMAGES.length],
   color: COLORS[i % COLORS.length],
   duration: parseInt(Math.random() * 100),
-  comment: parseInt(Math.random() * 100)
+  comment: parseInt(Math.random() * 100),
 }))
 
 
@@ -45,12 +45,12 @@ const secToTime = (s) => {
   }
   // 补零
   const zero = (v) => {
-    return (v >> 0) < 10 ? ("0" + v) : v
+    return (v >> 0) < 10 ? ('0' + v) : v
   }
-  return (h == 0 ? [zero(m), zero(s)].join(":") : [zero(h), zero(m), zero(s)].join(":"))
+  return (h == 0 ? [zero(m), zero(s)].join(':') : [zero(h), zero(m), zero(s)].join(':'))
 }
 
-export default class Find extends PureComponent {
+export default class Find extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -58,7 +58,7 @@ export default class Find extends PureComponent {
       endLoading: false,
       data: DATA,
       np: 0,
-      len: 20
+      len: 20,
     }
   }
 
@@ -79,11 +79,11 @@ export default class Find extends PureComponent {
     //   })
     if (!this.state.endLoading) {
       this.setState({
-        endLoading: true
+        endLoading: true,
       })
       setTimeout(() => {
         this.setState({
-          len: this.state.len + 20
+          len: this.state.len + 20,
         })
         const DATA = Array.from({length: 20}).map((_, i) => ({
           id: `item_${i + this.state.len}`,
@@ -91,11 +91,11 @@ export default class Find extends PureComponent {
           image: IMAGES[i % IMAGES.length],
           color: COLORS[i % COLORS.length],
           duration: parseInt(Math.random() * 100),
-          comment: parseInt(Math.random() * 100)
+          comment: parseInt(Math.random() * 100),
         }))
         this.setState({
           data: [...this.state.data, ...DATA],
-          endLoading: false
+          endLoading: false,
         })
       }, 500)
     }
@@ -158,7 +158,7 @@ export default class Find extends PureComponent {
   }
 }
 
-class Cell extends PureComponent {
+class Cell extends Component {
   componentDidMount() {
     // console.warn('mount cell')
   }
@@ -215,11 +215,11 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: '#0002',
     borderBottomLeftRadius: 6,
-    borderBottomRightRadius: 6
+    borderBottomRightRadius: 6,
   },
   cell: {
     margin: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 })

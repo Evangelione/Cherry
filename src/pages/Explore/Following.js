@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image, FlatList, StyleSheet } from 'react-native'
 
 const sourceData = [{id: '1', name: '宝姐姐', age: 19, adress: '重庆市', recent: '27分钟前在线', certification: true},
@@ -19,7 +19,7 @@ const sourceData = [{id: '1', name: '宝姐姐', age: 19, adress: '重庆市', r
   {id: '16', name: '宝姐姐', age: 19, adress: '重庆市', recent: '27分钟前在线', certification: true},
   {id: '17', name: '宝姐姐', age: 19, adress: '重庆市', recent: '27分钟前在线', certification: true}]
 
-export default class Following extends PureComponent {
+export default class Following extends Component {
 
   renderList = ({item}) => {
     return (
@@ -75,7 +75,7 @@ export default class Following extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#eee'
+    backgroundColor: '#eee',
   },
   listItem: {
     display: 'flex',
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
     shadowColor: 'gray',
     shadowOffset: {
       width: 0.5,
-      height: 0.5
+      height: 0.5,
     },
     shadowOpacity: 0.4,
     shadowRadius: 1,
     borderWidth: 0.5,
     borderColor: '#ddd',
-    elevation: 2
+    elevation: 2,
   },
   avatar: {
     width: 40,
@@ -102,13 +102,13 @@ const styles = StyleSheet.create({
   },
   itemDetail: {
     flex: 1,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   detailTop: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   detailBottom: {
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   attention: {
     justifyContent: 'center',
@@ -118,11 +118,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderWidth: 1,
     borderRadius: 4,
-    borderColor: '#eee'
+    borderColor: '#eee',
   },
   separator: {
     height: 1,
     backgroundColor: '#eee',
     marginLeft: 50,
-  }
+  },
 })

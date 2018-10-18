@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ const ButtonAndroid = props => <TouchableNativeFeedback
 
 const ButtonIos = props => <TouchableOpacity {...props}>{props.children}</TouchableOpacity>
 
-export default class CustomTabBar extends PureComponent {
+export default class CustomTabBar extends Component {
   _renderTab(name, page, isTabActive, onPressHandler) {
     const textColor = isTabActive ? this.props.activeColor : this.props.inactiveColor
     const fontWeight = isTabActive ? 'bold' : 'normal'
@@ -55,7 +55,7 @@ export default class CustomTabBar extends PureComponent {
       borderRadius: 2,
       backgroundColor: this.props.activeColor,
       bottom: 0,
-      left: deLen
+      left: deLen,
     }
 
     const translateX = this.props.scrollValue.interpolate({
@@ -66,7 +66,7 @@ export default class CustomTabBar extends PureComponent {
     const scaleValue = (defaultScale) => {
       let number = 4
       let arr = new Array(number * 2)
-      return arr.fill(0).reduce(function (pre, cur, idx) {
+      return arr.fill(0).reduce(function(pre, cur, idx) {
         idx == 0 ? pre.inputRange.push(cur) : pre.inputRange.push(pre.inputRange[idx - 1] + 0.5)
         idx % 2 ? pre.outputRange.push(defaultScale) : pre.outputRange.push(1)
         return pre
@@ -82,10 +82,10 @@ export default class CustomTabBar extends PureComponent {
           {
             transform: [
               {translateX},
-              {scaleX}
+              {scaleX},
             ],
           },
-          this.props.underlineStyle
+          this.props.underlineStyle,
         ]}
       />
     )
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   tabs: {
     height: 50,
@@ -132,6 +132,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderColor: '#f4f4f4'
-  }
+    borderColor: '#f4f4f4',
+  },
 })

@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { BackHandler, NetInfo, Alert } from 'react-native'
 import { Provider } from 'mobx-react'
 import stores from './src/store'
 import StackNavigator from './src'
 
-export default class App extends PureComponent {
+export default class App extends Component {
   componentWillMount() {
     BackHandler.addEventListener(
       'hardwareBackPress',

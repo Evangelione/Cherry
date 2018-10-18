@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, ScrollView, TouchableHighlight, StatusBar } from 'react-native'
 import { ListItem, Divider } from 'react-native-elements'
 
@@ -7,23 +7,23 @@ const list = [
   {
     name: 'Amy Farha',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
+    subtitle: 'Vice President',
   },
   {
     name: 'Chris Jackson',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
+    subtitle: 'Vice Chairman',
   },
 ]
 
 const list2 = [
   {
     title: 'Appointments',
-    icon: 'av-timer'
+    icon: 'av-timer',
   },
   {
     title: 'Trips',
-    icon: 'flight-takeoff'
+    icon: 'flight-takeoff',
   },
 ]
 
@@ -31,37 +31,37 @@ const list3 = [
   {
     name: 'Amy Farha',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
+    subtitle: 'Vice President',
   },
   {
     name: 'Chris Jackson',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
+    subtitle: 'Vice Chairman',
   },
 ]
 
 const userInfo = {
   name: 'Amy Farha',
   avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-  subtitle: 'Vice President'
+  subtitle: 'Vice President',
 }
 const list4 = [
   {
     name: 'Amy Farha',
-    subtitle: 'Vice President'
+    subtitle: 'Vice President',
   },
   {
     name: 'Chris Jackson',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
+    subtitle: 'Vice Chairman',
   },
 ]
-export default class Mine extends PureComponent {
+export default class Mine extends Component {
   static navigationOptions = {
     title: 'Mine',
     headerTitleStyle: {
-      justifyContent: 'center'
-    }
+      justifyContent: 'center',
+    },
   }
 
   pressItem = () => {
@@ -76,7 +76,7 @@ export default class Mine extends PureComponent {
       subtitle={item.subtitle}
       leftAvatar={{
         source: item.avatar_url && {uri: item.avatar_url},
-        title: item.name[0]
+        title: item.name[0],
       }}
     />
   )

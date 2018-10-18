@@ -1,12 +1,12 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 import FastImage from 'react-native-fast-image'
 
-export default class PlacehoderImage extends PureComponent {
+export default class PlacehoderImage extends Component {
   constructor() {
     super()
     this.state = {
-      contentDidLoad: false
+      contentDidLoad: false,
     }
   }
 
@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0
-  }
+    bottom: 0,
+  },
 })

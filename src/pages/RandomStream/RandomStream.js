@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Text, StatusBar } from 'react-native'
 
 const BARHEIGHT = StatusBar.currentHeight
 
-export default class RandomStream extends PureComponent {
+export default class RandomStream extends Component {
   static navigationOptions = {
-    title: 'RandomStream'
+    title: 'RandomStream',
   }
 
   render() {

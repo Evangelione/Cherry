@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 
-export default class Welcome extends PureComponent {
+export default class Welcome extends Component {
   static navigationOptions = {
-    title: 'Welcome'
+    title: 'Welcome',
   }
 
   componentDidMount() {
