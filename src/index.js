@@ -17,15 +17,13 @@ const Icon = {
 
 
 const AppStack = createMaterialTopTabNavigator({
-  Explore: {
-    screen: createStackNavigator({
-      Explore: Explore,
-    }, {
-      navigationOptions: {
-        header: null,
-      },
-    }),
-  },
+  Explore: createStackNavigator({
+    Explore: Explore,
+  }, {
+    navigationOptions: {
+      header: null,
+    },
+  }),
   RandomStream: createStackNavigator({
     RandomStream: RandomStream,
   }, {
