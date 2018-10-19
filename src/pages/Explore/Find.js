@@ -8,20 +8,20 @@ const itemWidth = width / 2
 
 const COLORS = ['#E1B168', '#FFA177', '#D4CAA0']
 const IMAGES = ['https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537353581481&di=2ba5d064d84fd8bdbdb26da4d356bef2&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171219%2Feae9fc495b8542cfa426d40b43e67c1e.jpeg',
-  'http://wimg.spriteapp.cn/picture/2018/0816/28490200_774.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0816/5b74bc51752a6_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0814/5b7264c9c02a8__b.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/5b73d96d11464_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/5b7402c2b270b__b.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0816/9b8a3898a0fb11e8b438842b2b4c75ab_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/7936a088a07e11e89cbf842b2b4c75ab_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/c211bcd6a04a11e8b438842b2b4c75abcut_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/bdbbed9ea05b11e8b438842b2b4c75ab_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/28487563_225.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0816/fe6a562ca10111e891ab842b2b4c75ab_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/7ec3b5c6a06b11e88d9b842b2b4c75ab_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/04889484a07a11e89828842b2b4c75ab_wpd.jpg',
-  'http://wimg.spriteapp.cn/picture/2018/0815/5b73aae820292__b.jpg']
+  'https://b-ssl.duitang.com/uploads/item/201502/17/20150217161549_C4K8L.jpeg',
+  'https://b-ssl.duitang.com/uploads/item/201512/10/20151210135838_Y2SvK.jpeg',
+  'https://img5.duitang.com/uploads/item/201407/23/20140723175802_LHCJU.jpeg',
+  'http://www.96weixin.com/upload/allimg/20170608/utslofrwz2g0838424859.jpg',
+  'http://pic.qqtn.com/up/2017-12/2017122209545713952.jpg',
+  'http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180510091418594.jpg',
+  'http://imgtu.5011.net/uploads/content/20170706/7544851499320881.jpg',
+  'http://uploads.5068.com/allimg/1801/82-1P115193S3-50.jpg',
+  'http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180510091418991.jpg',
+  'http://life.southmoney.com/tuwen/UploadFiles_6871/201805/20180510091419866.jpg',
+  'http://imgtu.5011.net/uploads/content/20170428/5865941493372153.jpg',
+  'http://www.ld12.com/upimg358/20160130/22240398993450.jpg',
+  'http://img2.touxiang.cn/file/20180125/0092f3dd7c61704870298c7ba9c67055.jpg',
+  'http://img2.touxiang.cn/file/20170208/1701d49b7e6e4d26f742399009109b30.jpg']
 const DATA = Array.from({length: 20}).map((_, i) => ({
   id: `item_${i}`,
   height: Math.round(Math.random() * 100 + 200),
@@ -180,6 +180,7 @@ class Cell extends Component {
         onPress={() => this._onPressContent(item)}
         style={styles.cell}>
         <Image
+          // defaultSource={require('../../asset/images/avatar.png')}
           source={{uri: item.image}}
           resizeMode='cover'
           style={{width: itemWidth - 2, height: item.height, borderRadius: 6}}

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Image, ScrollView, ImageBackground, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
 import { ListItem, Badge, Divider } from 'react-native-elements'
 import Iconfont from 'react-native-vector-icons/Iconfont'
+import Toast from 'react-native-easy-toast'
 
 const BARHEIGHT = StatusBar.currentHeight
 
@@ -55,6 +56,11 @@ export default class Mine extends Component {
     },
   }
 
+  persionalInfo = () => {
+    this.props.navigation.push('Login')
+
+  }
+
   pressItem = () => {
     console.log('pressItem')
   }
@@ -82,7 +88,10 @@ export default class Mine extends Component {
         <ImageBackground style={styles.imageBackground}
                          source={require('../../asset/images/bg.png')}>
           <View style={styles.userBox}>
-            <Iconfont name='gerenziliao' size={20} color="#fff"/>
+            <TouchableOpacity style={{paddingLeft: 20, paddingRight: 20, paddingTop: 10}} activeOpacity={0.6}
+                              onPress={this.persionalInfo}>
+              <Iconfont name='gerenziliao' size={20} color="#fff"/>
+            </TouchableOpacity>
           </View>
           <View style={styles.avatarBox}>
             <View style={styles.avatar}>
@@ -100,9 +109,7 @@ export default class Mine extends Component {
             <View style={styles.signIn}>
               <TouchableOpacity style={styles.roundSignIn} activeOpacity={0.6}>
                 <Iconfont style={{marginRight: 5}} name='qiandao' size={14} color="#FF8282"/>
-                <Text style={{color: '#FF8282'}}>
-                  签到
-                </Text>
+                <Text style={{color: '#FF8282'}}>签到</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -135,10 +142,8 @@ export default class Mine extends Component {
                     leftElement={item.icon}
                     rightElement={<Text style={{color: '#AEAEAE'}}>{item.count}</Text>}
                   />
-                  {
-                    i !== (list.length - 1) ?
-                      <Divider style={{backgroundColor: '#eee'}}/> : null
-                  }
+                  {i !== (list.length - 1) ?
+                    <Divider style={{backgroundColor: '#eee'}}/> : null}
                 </View>
               </TouchableOpacity>
 
@@ -154,10 +159,8 @@ export default class Mine extends Component {
                     title={item.title}
                     leftElement={item.icon}
                   />
-                  {
-                    i !== (list2.length - 1) ?
-                      <Divider style={{backgroundColor: '#eee'}}/> : null
-                  }
+                  {i !== (list2.length - 1) ?
+                    <Divider style={{backgroundColor: '#eee'}}/> : null}
                 </View>
               </TouchableOpacity>
             ))}
@@ -173,15 +176,16 @@ export default class Mine extends Component {
                     leftElement={item.icon}
                     rightElement={this.renderRightItem.bind(null, item)}
                   />
-                  {
-                    i !== (list3.length - 1) ?
-                      <Divider style={{backgroundColor: '#eee'}}/> : null
-                  }
+                  {i !== (list3.length - 1) ?
+                    <Divider style={{backgroundColor: '#eee'}}/> : null}
                 </View>
               </TouchableOpacity>
             ))}
           </View>
         </ScrollView>
+        <Toast ref={(ref) => {
+          this.toast = ref
+        }} position="bottom"/>
       </View>
     )
   }
@@ -207,8 +211,6 @@ const styles = StyleSheet.create({
   userBox: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginTop: 10,
-    marginRight: 15,
   },
   avatarBox: {
     flex: 1,

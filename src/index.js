@@ -1,10 +1,10 @@
 import React from 'react'
 import { Image } from 'react-native'
 import { createStackNavigator, createMaterialTopTabNavigator, createSwitchNavigator } from 'react-navigation'
-import Iconfont from 'react-native-vector-icons/Iconfont'
 import Explore from './pages/Explore/Explore'
 import RandomStream from './pages/RandomStream/RandomStream'
 import Mine from './pages/Mine/Mine'
+import PersionalInfo from './pages/Mine/PersionalInfo'
 import Login from './pages/Login'
 
 const Icon = {
@@ -34,6 +34,7 @@ const AppStack = createMaterialTopTabNavigator({
   }),
   Mine: createStackNavigator({
     Mine: Mine,
+    PersionalInfo: PersionalInfo,
   }, {
     navigationOptions: {
       header: null,
