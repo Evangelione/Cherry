@@ -148,7 +148,7 @@ export default class Mine extends Component {
 
             ))}
           </View>
-          <View style={{marginTop: 20}}>
+          <View style={{marginTop: 10}}>
             {list2.map((item, i) => (
               <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem}>
                 <View>
@@ -164,7 +164,7 @@ export default class Mine extends Component {
               </TouchableOpacity>
             ))}
           </View>
-          <View style={{marginTop: 20, marginBottom: 70}}>
+          <View style={{marginTop: 10, marginBottom: 70}}>
             {list3.map((item, i) => (
               <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem}>
                 <View>
