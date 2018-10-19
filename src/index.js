@@ -15,6 +15,7 @@ const Icon = {
   'Mine_un': require('./asset/images/Mine_un.png'),
 }
 
+
 const AppStack = createMaterialTopTabNavigator({
   Explore: {
     screen: createStackNavigator({
@@ -34,7 +35,6 @@ const AppStack = createMaterialTopTabNavigator({
   }),
   Mine: createStackNavigator({
     Mine: Mine,
-    PersionalInfo: PersionalInfo,
   }, {
     navigationOptions: {
       header: null,
@@ -60,9 +60,6 @@ const AppStack = createMaterialTopTabNavigator({
       left: 0,
       right: 0,
       zIndex: 10,
-      elevation: 0,
-      borderTopWidth: 1,
-      borderTopColor: '#eee',
     },
   },
   navigationOptions: ({navigation}) => ({
@@ -82,9 +79,19 @@ const AppStack = createMaterialTopTabNavigator({
   }),
 })
 
+const PageStack = createStackNavigator({
+  App: AppStack,
+  PersionalInfo: PersionalInfo,
+}, {
+  initialRouteName: 'App',
+  navigationOptions: {
+    header: null,
+  },
+})
+
 export default createSwitchNavigator({
   Login: Login,  //constructor 会变灰色，不知道为什么
-  App: AppStack,
+  Page: PageStack,
 }, {
   initialRouteName: 'Login',
   backBehavior: false,

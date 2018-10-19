@@ -112,7 +112,7 @@ export default class Login extends Component {
   login = () => {
     NetInfo.isConnected.fetch().then((isConnected) => {
       if (isConnected) {
-        this.props.navigation.navigate('Explore')
+        this.props.navigation.navigate('Page')
         // this.doLogin()
       } else {
         this.toast.show('网络状况不佳')
@@ -121,7 +121,7 @@ export default class Login extends Component {
   }
   doLogin = () => {
     if (this.props.NimStore.userID && constObj.nim) {
-      this.props.navigation.navigate('Explore')
+      this.props.navigation.navigate('Page')
       return
     }
     let {account, password} = this.state
@@ -145,7 +145,7 @@ export default class Login extends Component {
         this.props.navigation.navigate('Login')
       } else {
         if (this.props.navigation.state.routeName === 'Login') {
-          this.props.navigation.navigate('Explore')
+          this.props.navigation.navigate('Page')
         }
         AsyncStorage.setItem('isLogin', 'true')
       }

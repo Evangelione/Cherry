@@ -57,8 +57,7 @@ export default class Mine extends Component {
   }
 
   persionalInfo = () => {
-    this.props.navigation.push('Login')
-
+    this.props.navigation.navigate('PersionalInfo')
   }
 
   pressItem = () => {
