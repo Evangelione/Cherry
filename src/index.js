@@ -1,10 +1,19 @@
 import React from 'react'
+import { Image } from 'react-native'
 import { createStackNavigator, createMaterialTopTabNavigator, createSwitchNavigator } from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Iconfont from 'react-native-vector-icons/Iconfont'
 import Explore from './pages/Explore/Explore'
 import RandomStream from './pages/RandomStream/RandomStream'
 import Mine from './pages/Mine/Mine'
 import Login from './pages/Login'
+
+const Icon = {
+  'Home': require('./asset/images/Home.png'),
+  'Home_un': require('./asset/images/Home_un.png'),
+  'Stream': require('./asset/images/Stream.png'),
+  'Mine': require('./asset/images/Mine.png'),
+  'Mine_un': require('./asset/images/Mine_un.png'),
+}
 
 const AppStack = createMaterialTopTabNavigator({
   Explore: {
@@ -35,12 +44,10 @@ const AppStack = createMaterialTopTabNavigator({
   swipeEnabled: true,
   backBehavior: false,
   tabBarOptions: {
-    activeTintColor: '#666',
-    inactiveTintColor: '#ccc',
     showIcon: true,
     showLabel: false,
     tabStyle: {
-      backgroundColor: 'rgba(255,255,255,0)',
+      opacity: 1,
     },
     indicatorStyle: {
       height: 0,
@@ -53,6 +60,8 @@ const AppStack = createMaterialTopTabNavigator({
       right: 0,
       zIndex: 10,
       elevation: 0,
+      borderTopWidth: 1,
+      borderTopColor: '#eee',
     },
   },
   navigationOptions: ({navigation}) => ({
@@ -60,13 +69,14 @@ const AppStack = createMaterialTopTabNavigator({
       const {routeName} = navigation.state
       let iconName
       if (routeName === 'Explore') {
-        iconName = 'ios-compass'
+        focused ? iconName = Icon.Home : iconName = Icon.Home_un
       } else if (routeName === 'RandomStream') {
-        iconName = 'ios-add-circle'
+        iconName = Icon.Stream
+        return <Image style={{width: 40, height: 40}} source={iconName}/>
       } else if (routeName === 'Mine') {
-        iconName = 'ios-person'
+        focused ? iconName = Icon.Mine : iconName = Icon.Mine_un
       }
-      return <Ionicons name={iconName} size={26} color={tintColor}/>
+      return <Image style={{width: 24, height: 24}} source={iconName}/>
     },
   }),
 })
