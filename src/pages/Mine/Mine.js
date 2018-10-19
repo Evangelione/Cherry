@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Image, ScrollView, ImageBackground, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
-import { ListItem, Divider } from 'react-native-elements'
+import { ListItem, Badge, Divider } from 'react-native-elements'
 import Iconfont from 'react-native-vector-icons/Iconfont'
 
 const BARHEIGHT = StatusBar.currentHeight
@@ -9,17 +9,19 @@ const list = [
   {
     title: '余额',
     icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/balance.png')}/>,
+    count: 12800,
   },
   {
     title: '收益',
     icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/income.png')}/>,
+    count: 8000,
   },
 ]
 
 const list2 = [
   {
     title: '照片墙（增加曝光度）',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/photowall.png')}/>,
+    icon: <Image style={{width: 22, height: 19}} source={require('../../asset/images/photowall.png')}/>,
   },
   {
     title: '技能宝库',
@@ -31,14 +33,16 @@ const list3 = [
   {
     title: '身份认证',
     icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/idconfirm.png')}/>,
+    certifications: false,
   },
   {
     title: '邀请获利',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/invite.png')}/>,
+    icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/invite.png')}/>,
+    badge: true,
   },
   {
     title: '设置',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/setting.png')}/>,
+    icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/setting.png')}/>,
   },
 ]
 
@@ -53,6 +57,23 @@ export default class Mine extends Component {
 
   pressItem = () => {
     console.log('pressItem')
+  }
+
+  renderRightItem = (item) => {
+    let result = null
+    switch (item.title) {
+      case '身份认证' :
+        result = item.certifications ? <Text style={{color: '#FD798F'}}>已认证</Text> :
+          <Text style={{color: '#FD798F'}}>未认证</Text>
+        break
+      case '邀请获利':
+        result = item.badge ? <Badge
+          containerStyle={{backgroundColor: '#FD798F', padding: 3, width: 6, height: 6}}
+          textStyle={{color: 'orange'}}
+        /> : null
+        break
+    }
+    return result
   }
 
   render() {
@@ -111,7 +132,8 @@ export default class Mine extends Component {
                     key={i}
                     chevron
                     title={item.title}
-                    leftIcon={item.icon}
+                    leftElement={item.icon}
+                    rightElement={<Text style={{color: '#AEAEAE'}}>{item.count}</Text>}
                   />
                   {
                     i !== (list.length - 1) ?
@@ -130,7 +152,7 @@ export default class Mine extends Component {
                     key={i}
                     chevron
                     title={item.title}
-                    leftIcon={item.icon}
+                    leftElement={item.icon}
                   />
                   {
                     i !== (list2.length - 1) ?
@@ -148,7 +170,8 @@ export default class Mine extends Component {
                     key={i}
                     chevron
                     title={item.title}
-                    leftIcon={item.icon}
+                    leftElement={item.icon}
+                    rightElement={this.renderRightItem.bind(null, item)}
                   />
                   {
                     i !== (list3.length - 1) ?
