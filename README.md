@@ -70,3 +70,17 @@
 
 18. yarn add react-native-vector-icons  && react-native link react-native-vector-icons && 修改 implementation错误，buildtools版本错误
 
+19. 集成自定义图标
+
+    创建react-native-vector-icons/Iconfont.js
+
+    创建react-native-vector-icons/glyphmaps/Iconfont.json
+
+    将Iconfont.ttf放入android/app/src/main/assets/fonts
+
+    使用：
+
+    import Iconfont from 'react-native-vector-icons/Iconfont'
+
+    <Iconfont name='yirenzheng' size={30} color="red"></Iconfont>
+

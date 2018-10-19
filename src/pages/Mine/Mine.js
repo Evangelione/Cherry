@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, ImageBackground, StatusBar, TouchableHighlight } from 'react-native'
 import { ListItem, Divider } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/Ionicons'
+import Iconfont from 'react-native-vector-icons/Iconfont'
 
 const BARHEIGHT = StatusBar.currentHeight
 
@@ -33,7 +33,9 @@ export default class Mine extends Component {
     return (
       <ScrollView>
         <ImageBackground style={{paddingTop: BARHEIGHT, minHeight: 240, backgroundColor: '#fff'}}
-                         source={require('../../asset/images/bg.png')}></ImageBackground>
+                         source={require('../../asset/images/bg.png')}>
+          <Iconfont name='yirenzheng' size={30} color="red"></Iconfont>
+        </ImageBackground>
         <View>
           {list.map((item, i) => (
             <TouchableHighlight key={i} underlayColor={'#666'} onPress={this.pressItem}>
