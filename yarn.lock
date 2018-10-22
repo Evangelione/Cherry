@@ -1319,6 +1319,10 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+
 base64-js@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.1.2.tgz#d6400cac1c4c660976d90d07a04351d89395f5e8"
@@ -4291,6 +4295,27 @@ react-native-elements@^1.0.0-beta7:
     opencollective-postinstall "^2.0.0"
     prop-types "^15.5.8"
 
+react-native-fs@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.12.0.tgz#77b7893d9f9a9318f577031a3447d1aace022020"
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^2.1.1"
+
+react-native-image-crop-picker@^0.21.2:
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.21.2.tgz#f0e7ad4615f1f7c79ba25e2e7708042e306d258e"
+
+react-native-image-pan-zoom@^2.1.9:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
+
+react-native-image-zoom-viewer@^2.2.23:
+  version "2.2.23"
+  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-2.2.23.tgz#364f65792edacd7354b48982843dbfc9db5d438e"
+  dependencies:
+    react-native-image-pan-zoom "^2.1.9"
+
 react-native-safe-area-view@0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.11.0.tgz#4f3dda43c2bace37965e7c6aef5fc83d4f19d174"
@@ -5282,6 +5307,10 @@ urix@^0.1.0:
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
+
+utf8@^2.1.1:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-2.1.2.tgz#1fa0d9270e9be850d9b05027f63519bf46457d96"
 
 util-deprecate@~1.0.1:
   version "1.0.2"

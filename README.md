@@ -84,3 +84,6 @@
 
     <Iconfont name='yirenzheng' size={30} color="red"></Iconfont>
 
+20. yarn add react-native-image-crop-picker,根据github集成android配置，ios未配置
+
+21. yarn add react-native-image-zoom-viewer

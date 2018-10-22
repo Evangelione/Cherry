@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
-import { View, Text, Image, ScrollView, ImageBackground, StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
+import { inject, observer } from 'mobx-react'
+import {
+  View,
+  Text,
+  Image,
+  Modal,
+  ScrollView,
+  CameraRoll,
+  ImageBackground,
+  StatusBar,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native'
 import { ListItem, Badge, Divider } from 'react-native-elements'
 import Iconfont from 'react-native-vector-icons/Iconfont'
 import Toast from 'react-native-easy-toast'
+import ImageViewer from 'react-native-image-zoom-viewer'
+import { OS } from '../../utils/device'
 
 const BARHEIGHT = StatusBar.currentHeight
 
@@ -47,8 +61,16 @@ const list3 = [
   },
 ]
 
-
+@inject('Nim')
+@observer
 export default class Mine extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      showAvatar: false,
+    }
+  }
+
   static navigationOptions = {
     title: 'Mine',
     headerTitleStyle: {
@@ -56,8 +78,26 @@ export default class Mine extends Component {
     },
   }
 
+  toggleAvatar = () => {
+    this.setState({
+      showAvatar: !this.state.showAvatar,
+    })
+  }
+
   persionalInfo = () => {
     this.props.navigation.navigate('PersionalInfo')
+  }
+
+  saveAvatarToLocal = (url) => {
+    // let index = this.props.curentImage
+    // let url = this.props.imaeDataUrl[index]
+    let promise = CameraRoll.saveToCameraRoll(url)
+    promise.then(_ => {
+      this.toast.show('已保存到系统相册')
+    }).catch(error => {
+      this.toast.show('保存失败！\n' + error)
+      console.log(url)
+    })
   }
 
   pressItem = () => {
@@ -84,6 +124,8 @@ export default class Mine extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <StatusBar backgroundColor={this.state.showAvatar ? 'black' : 'transparent'}
+                   translucent={!this.state.showAvatar}></StatusBar>
         <ImageBackground style={styles.imageBackground}
                          source={require('../../asset/images/bg.png')}>
           <View style={styles.userBox}>
@@ -94,11 +136,24 @@ export default class Mine extends Component {
           </View>
           <View style={styles.avatarBox}>
             <View style={styles.avatar}>
-              <TouchableOpacity style={styles.avatarPadding} activeOpacity={0.6}>
+              <TouchableOpacity style={styles.avatarPadding} activeOpacity={0.6} onPress={this.toggleAvatar}>
                 <Image
                   style={{width: 54, height: 54, borderRadius: 40}}
-                  source={require('../../asset/images/mm.png')}
+                  source={{uri: this.props.Nim.avatar}}
                 />
+                <Modal onRequestClose={this.toggleAvatar} animationType='slide' visible={this.state.showAvatar}
+                       transparent={true}>
+                  <ImageViewer
+                    {OS === 'android' ? this.saveAvatarToLocal : {}}
+                    onClick={this.toggleAvatar}
+                    imageUrls={[{
+                      url: this.props.Nim.avatar,
+                    }]}
+                    menuContext={{'saveToLocal': '保存图片', 'cancel': '取消'}}></ImageViewer>
+                  <Toast ref={(ref) => {
+                    this.toast = ref
+                  }} position="bottom"/>
+                </Modal>
               </TouchableOpacity>
               <View style={styles.userName}>
                 <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 16}}>你的太阳啊</Text>
@@ -182,9 +237,6 @@ export default class Mine extends Component {
             ))}
           </View>
         </ScrollView>
-        <Toast ref={(ref) => {
-          this.toast = ref
-        }} position="bottom"/>
       </View>
     )
   }
