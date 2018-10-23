@@ -89,3 +89,5 @@
 21. yarn add react-native-image-zoom-viewer
 
 22. yarn add react-native-fs, react-native link react-native-fs
+
+23. yarn add react-native-actionsheet

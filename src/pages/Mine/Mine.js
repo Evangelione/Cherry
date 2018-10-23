@@ -31,13 +31,6 @@ export default class Mine extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Mine',
-    headerTitleStyle: {
-      justifyContent: 'center',
-    },
-  }
-
   toggleAvatar = () => {
     this.setState({
       showAvatar: !this.state.showAvatar,

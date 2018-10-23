@@ -31,12 +31,46 @@ class ModifyInfo extends Component {
     this.refs.input.clear()
   }
 
-  render() {
+  renderItem = () => {
     const {navigation} = this.props
-    const {text} = this.state
     const key = navigation.getParam('key', '')
     const title = navigation.getParam('title', '')
     const value = navigation.getParam('value', '')
+    let element = <></>
+    switch (key) {
+      case 'nickname':
+        element = <Input placeholder={`请输入${title}`} defaultValue={value} inputStyle={style.input}
+                         ref='input'
+                         onChangeText={this.setText}
+                         rightIcon={this.renderRightIcon}
+                         rightIconContainerStyle={style.clearIcon}
+                         containerStyle={{flex: 1}}
+                         inputContainerStyle={{borderBottomColor: 'rgba(255,255,255,0)'}}/>
+        break
+      case 'birthday':
+        element = <></>
+        break
+      case 'area':
+        element = <></>
+        break
+      case 'phone':
+        element = <Input placeholder={`请输入${title}`} defaultValue={value} inputStyle={style.input}
+                         ref='input'
+                         onChangeText={this.setText}
+                         rightIcon={this.renderRightIcon}
+                         rightIconContainerStyle={style.clearIcon}
+                         containerStyle={{flex: 1}}
+                         inputContainerStyle={{borderBottomColor: 'rgba(255,255,255,0)'}}/>
+        break
+    }
+    return element
+  }
+
+  render() {
+    const {text} = this.state
+    const {navigation} = this.props
+    const key = navigation.getParam('key', '')
+    const title = navigation.getParam('title', '')
     return (
       <View style={{flex: 1}}>
         <CustomizeHeader title={`修改${title}`} backgroundColor='#fff'
@@ -44,13 +78,7 @@ class ModifyInfo extends Component {
                          setkey={key}
                          settext={text}/>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <Input placeholder={`请输入${title}`} defaultValue={value} inputStyle={style.input}
-                 ref='input'
-                 onChangeText={this.setText}
-                 rightIcon={this.renderRightIcon}
-                 rightIconContainerStyle={style.clearIcon}
-                 containerStyle={{flex: 1}}
-                 inputContainerStyle={{borderBottomColor: 'rgba(255,255,255,0)'}}/>
+          {this.renderItem()}
         </View>
       </View>
     )

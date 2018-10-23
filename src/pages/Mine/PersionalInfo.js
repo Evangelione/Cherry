@@ -1,17 +1,23 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { View, Text, TouchableOpacity, StatusBar, ScrollView, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StatusBar, ScrollView, Image, Clipboard } from 'react-native'
 import { ListItem, Divider } from 'react-native-elements'
 import ImagePicker from 'react-native-image-crop-picker'
 import CustomizeHeader from '../../components/Header'
+import Toast from 'react-native-easy-toast'
 
 @inject('User')
 @observer
 export default class PersionalInfo extends Component {
   pressItem = (item) => {
     const {key, title, value} = item
-    switch (title) {
-      case 'ID':
+    switch (key) {
+      case 'id':
+        Clipboard.setString(value)
+        this.toast.show('ID已经复制到粘贴板')
+        return false
+        break
+      case 'gender':
         return false
         break
     }
@@ -31,8 +37,8 @@ export default class PersionalInfo extends Component {
   }
 
   render() {
-    console.log('render')
     const list = [{
+      key: 'id',
       title: 'ID',
       value: this.props.User.id,
       chevron: false,
@@ -100,6 +106,9 @@ export default class PersionalInfo extends Component {
             <ListItem subtitle={<Text style={{color: '#9B9B9B'}}>{this.props.User.signature}</Text>}/>
           </TouchableOpacity>
         </ScrollView>
+        <Toast ref={(ref) => {
+          this.toast = ref
+        }} position="bottom"/>
       </View>
     )
   }
