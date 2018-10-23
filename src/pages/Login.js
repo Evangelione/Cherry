@@ -194,7 +194,7 @@ export default class Login extends Component {
         </View>
         <Toast ref={(ref) => {
           this.toast = ref
-        }} position="bottom"/>
+        }} position="center"/>
       </View>
     )
   }

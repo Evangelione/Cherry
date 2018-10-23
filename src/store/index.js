@@ -1,7 +1,9 @@
-import Link from './link'
 import Nim from './nim'
+import Link from './link'
+import User from './user'
 
 export default {
-  Link,
   Nim,
+  Link,
+  User,
 }

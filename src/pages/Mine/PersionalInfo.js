@@ -1,60 +1,21 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { View, Text, TouchableOpacity, StatusBar, ScrollView, Image } from 'react-native'
-import { Header, ListItem, Divider } from 'react-native-elements'
+import { ListItem, Divider } from 'react-native-elements'
 import ImagePicker from 'react-native-image-crop-picker'
-import Iconfont from 'react-native-vector-icons/Iconfont'
-import Nim from '../../store/nim'
+import CustomizeHeader from '../../components/Header'
 
-const list = [
-  {
-    title: 'ID',
-    value: 5201314,
-    chevron: false,
-  },
-  {
-    title: '昵称',
-    value: '你的太阳啊',
-    chevron: true,
-  },
-  {
-    title: '性别',
-    value: '女',
-    chevron: true,
-  },
-  {
-    title: '生日',
-    value: '1998-05-07',
-    chevron: true,
-  },
-  {
-    title: '地区',
-    value: '浙江 杭州',
-    chevron: true,
-  },
-  {
-    title: '手机号',
-    value: '15088888888',
-    chevron: true,
-  },
-]
-
-@inject('Nim')
+@inject('User')
 @observer
 export default class PersionalInfo extends Component {
-  static navigationOptions = {
-    title: 'Mine',
-    headerTitleStyle: {
-      justifyContent: 'center',
-    },
-  }
-
-  navigateBack = () => {
-    this.props.navigation.navigate('Mine')
-  }
-
-  pressItem = () => {
-    console.log('123')
+  pressItem = (item) => {
+    const {key, title, value} = item
+    switch (title) {
+      case 'ID':
+        return false
+        break
+    }
+    this.props.navigation.navigate('ModifyInfo', {key, title, value})
   }
 
   pressAvatar = () => {
@@ -70,15 +31,41 @@ export default class PersionalInfo extends Component {
   }
 
   render() {
+    console.log('render')
+    const list = [{
+      title: 'ID',
+      value: this.props.User.id,
+      chevron: false,
+    }, {
+      key: 'nickname',
+      title: '昵称',
+      value: this.props.User.nickname,
+      chevron: true,
+    }, {
+      key: 'gender',
+      title: '性别',
+      value: this.props.User.gender,
+      chevron: true,
+    }, {
+      key: 'birthday',
+      title: '生日',
+      value: this.props.User.birthday,
+      chevron: true,
+    }, {
+      key: 'area',
+      title: '地区',
+      value: this.props.User.area,
+      chevron: true,
+    }, {
+      key: 'phone',
+      title: '手机号',
+      value: this.props.User.phone,
+      chevron: true,
+    }]
     return (
       <View>
         <StatusBar barStyle='dark-content' translucent={true} backgroundColor='transparent'/>
-        <Header backgroundColor='#fff'>
-          <TouchableOpacity onPress={this.navigateBack} style={{padding: 10}}>
-            <Iconfont name='zuojiantou' size={18} color='#6C6C6C'/>
-          </TouchableOpacity>
-          <Text style={{fontSize: 18, color: '#3e3e3e'}}>个人资料</Text>
-        </Header>
+        <CustomizeHeader title='个人资料' backgroundColor='#fff'/>
         <ScrollView>
           <TouchableOpacity style={{marginTop: 10, marginBottom: 10}} activeOpacity={0.6} onPress={this.pressAvatar}>
             <ListItem
@@ -86,12 +73,12 @@ export default class PersionalInfo extends Component {
               title='头像'
               rightElement={<Image
                 style={{width: 54, height: 54, borderRadius: 40}}
-                source={{uri: this.props.Nim.avatar}}
+                source={{uri: this.props.User.avatar}}
               />}
             />
           </TouchableOpacity>
           {list.map((item, i) => (
-            <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem}>
+            <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem.bind(null, item)}>
               <View>
                 <ListItem
                   key={i}
@@ -110,7 +97,7 @@ export default class PersionalInfo extends Component {
           <TouchableOpacity style={{marginTop: 10, marginBottom: 10}} activeOpacity={0.6} onPress={this.pressItem}>
             <ListItem title='个性签名'/>
             <Divider style={{backgroundColor: '#eee'}}/>
-            <ListItem subtitle={<Text style={{color: '#9B9B9B'}}>123</Text>}/>
+            <ListItem subtitle={<Text style={{color: '#9B9B9B'}}>{this.props.User.signature}</Text>}/>
           </TouchableOpacity>
         </ScrollView>
       </View>

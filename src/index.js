@@ -6,6 +6,7 @@ import RandomStream from './pages/RandomStream/RandomStream'
 import Mine from './pages/Mine/Mine'
 import PersionalInfo from './pages/Mine/PersionalInfo'
 import Login from './pages/Login'
+import ModifyInfo from './pages/Mine/ModifyInfo'
 
 const Icon = {
   'Home': require('./asset/images/Home.png'),
@@ -80,6 +81,7 @@ const AppStack = createMaterialTopTabNavigator({
 const PageStack = createStackNavigator({
   App: AppStack,
   PersionalInfo: PersionalInfo,
+  ModifyInfo: ModifyInfo,
 }, {
   initialRouteName: 'App',
   navigationOptions: {

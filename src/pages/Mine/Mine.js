@@ -21,48 +21,7 @@ import { OS } from '../../utils/device'
 
 const BARHEIGHT = StatusBar.currentHeight
 
-const list = [
-  {
-    title: '余额',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/balance.png')}/>,
-    count: 12800,
-  },
-  {
-    title: '收益',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/income.png')}/>,
-    count: 8000,
-  },
-]
-
-const list2 = [
-  {
-    title: '照片墙（增加曝光度）',
-    icon: <Image style={{width: 22, height: 19}} source={require('../../asset/images/photowall.png')}/>,
-  },
-  {
-    title: '技能宝库',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/skill.png')}/>,
-  },
-]
-
-const list3 = [
-  {
-    title: '身份认证',
-    icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/idconfirm.png')}/>,
-    certifications: false,
-  },
-  {
-    title: '邀请获利',
-    icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/invite.png')}/>,
-    badge: true,
-  },
-  {
-    title: '设置',
-    icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/setting.png')}/>,
-  },
-]
-
-@inject('Nim')
+@inject('User')
 @observer
 export default class Mine extends Component {
   constructor(props) {
@@ -171,6 +130,44 @@ export default class Mine extends Component {
   }
 
   render() {
+    const list = [{
+      title: '余额',
+      icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/balance.png')}/>,
+      count: this.props.User.balance,
+    }, {
+      title: '收益',
+      icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/income.png')}/>,
+      count: this.props.User.income,
+    }]
+    const list2 = [{
+      title: '照片墙（增加曝光度）',
+      icon: <Image style={{width: 22, height: 19}} source={require('../../asset/images/photowall.png')}/>,
+    }, {
+      title: '技能宝库',
+      icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/skill.png')}/>,
+    }]
+    const list3 = [{
+      title: '身份认证',
+      icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/idconfirm.png')}/>,
+      certifications: this.props.User.certifications,
+    }, {
+      title: '邀请获利',
+      icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/invite.png')}/>,
+      badge: this.props.User.invitebadge,
+    }, {
+      title: '设置',
+      icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/setting.png')}/>,
+    }]
+    const list4 = [{
+      title: '粉丝',
+      count: this.props.User.fans,
+    }, {
+      title: '关注',
+      count: this.props.User.follow,
+    }, {
+      title: '动态圈',
+      count: this.props.User.discovery,
+    }]
     return (
       <View style={{flex: 1}}>
         <StatusBar backgroundColor={this.state.showAvatar ? 'black' : 'transparent'}
@@ -188,13 +185,12 @@ export default class Mine extends Component {
               <TouchableOpacity style={styles.avatarPadding} activeOpacity={0.6} onPress={this.toggleAvatar}>
                 <Image
                   style={{width: 54, height: 54, borderRadius: 40}}
-                  source={{uri: this.props.Nim.avatar}}
-                />
+                  source={{uri: this.props.User.avatar}}/>
                 <Modal onRequestClose={this.toggleAvatar} animationType='slide' visible={this.state.showAvatar}
                        transparent={true}>
                   <ImageViewer
                     imageUrls={[{
-                      url: this.props.Nim.avatar,
+                      url: this.props.User.avatar,
                     }]}
                     onClick={this.toggleAvatar}
                     onSave={this.saveAvatarToLocal}
@@ -205,8 +201,8 @@ export default class Mine extends Component {
                 </Modal>
               </TouchableOpacity>
               <View style={styles.userName}>
-                <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 16}}>你的太阳啊</Text>
-                <Text style={{color: '#fff'}}>ID：5201314</Text>
+                <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 16}}>{this.props.User.nickname}</Text>
+                <Text style={{color: '#fff'}}>ID：{this.props.User.id}</Text>
               </View>
             </View>
             <View style={styles.signIn}>
@@ -217,20 +213,14 @@ export default class Mine extends Component {
             </View>
           </View>
           <View style={styles.fanBox}>
-            <TouchableOpacity style={styles.fanItem} activeOpacity={0.6}>
-              <Text style={styles.BW16}>63930</Text>
-              <Text style={{color: '#fff'}}>粉丝</Text>
-            </TouchableOpacity>
-            <View style={styles.line}/>
-            <TouchableOpacity style={styles.fanItem} activeOpacity={0.6}>
-              <Text style={styles.BW16}>70</Text>
-              <Text style={{color: '#fff'}}>关注</Text>
-            </TouchableOpacity>
-            <View style={styles.line}/>
-            <TouchableOpacity style={styles.fanItem} activeOpacity={0.6}>
-              <Text style={styles.BW16}>130</Text>
-              <Text style={{color: '#fff'}}>动态圈</Text>
-            </TouchableOpacity>
+            {list4.map((item, i) => (
+              <TouchableOpacity style={styles.fanItem} key={i} activeOpacity={0.6}>
+                <Text style={styles.BW16}>{item.count}</Text>
+                <Text style={{color: '#fff'}}>{item.title}</Text>
+                {i !== (list4.length - 1) ?
+                  <View style={styles.line}/> : null}
+              </TouchableOpacity>
+            ))}
           </View>
         </ImageBackground>
         <ScrollView style={{flex: 1}}>
@@ -301,7 +291,9 @@ const styles = StyleSheet.create({
     width: 1,
     height: 20,
     backgroundColor: '#fff',
-    marginTop: 16,
+    position: 'absolute',
+    top: 12,
+    right: 0,
   },
   imageBackground: {
     paddingTop: BARHEIGHT,
