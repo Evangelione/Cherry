@@ -188,9 +188,7 @@ export default class Mine extends Component {
                     onClick={this.toggleAvatar}
                     onSave={this.saveAvatarToLocal}
                     menuContext={{'saveToLocal': '保存图片', 'cancel': '取消'}}></ImageViewer>
-                  <Toast ref={(ref) => {
-                    this.toast = ref
-                  }} position="bottom"/>
+                  <Toast ref={ref => this.toast = ref} position='bottom'/>
                 </Modal>
               </TouchableOpacity>
               <View style={styles.userName}>

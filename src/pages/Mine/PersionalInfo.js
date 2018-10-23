@@ -5,6 +5,7 @@ import { ListItem, Divider } from 'react-native-elements'
 import ImagePicker from 'react-native-image-crop-picker'
 import CustomizeHeader from '../../components/Header'
 import Toast from 'react-native-easy-toast'
+import ActionSheet from 'react-native-actionsheet'
 
 @inject('User')
 @observer
@@ -18,6 +19,7 @@ export default class PersionalInfo extends Component {
         return false
         break
       case 'gender':
+        this.ActionSheet.show()
         return false
         break
     }
@@ -34,6 +36,14 @@ export default class PersionalInfo extends Component {
     }).catch(e => {
       console.log(e)
     })
+  }
+
+  sexChange = (index) => {
+    if (index === 0) {
+      this.props.User.update('gender', '男')
+    } else if (index === 1) {
+      this.props.User.update('gender', '女')
+    }
   }
 
   render() {
@@ -106,9 +116,12 @@ export default class PersionalInfo extends Component {
             <ListItem subtitle={<Text style={{color: '#9B9B9B'}}>{this.props.User.signature}</Text>}/>
           </TouchableOpacity>
         </ScrollView>
-        <Toast ref={(ref) => {
-          this.toast = ref
-        }} position="bottom"/>
+        <ActionSheet
+          ref={ref => this.ActionSheet = ref}
+          options={['男', '女', '取消']}
+          cancelButtonIndex={2}
+          onPress={this.sexChange}/>
+        <Toast ref={ref => this.toast = ref} position='bottom'/>
       </View>
     )
   }

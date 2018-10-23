@@ -38,9 +38,7 @@ class CustomizeHeader extends Component {
             <Text style={{color: '#FD798F'}}>完成</Text>
           </TouchableOpacity> : ''}
         </Header>
-        <Toast ref={(ref) => {
-          this.toast = ref
-        }} position="center"/>
+        <Toast ref={ref => this.toast = ref} position='center'/>
       </>
     )
   }
