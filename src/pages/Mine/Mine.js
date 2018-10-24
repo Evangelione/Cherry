@@ -13,7 +13,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import { ListItem, Badge, Divider } from 'react-native-elements'
-import Iconfont from 'react-native-vector-icons/Iconfont'
+import Iconfont from '../../common/Iconfont'
 import Toast from 'react-native-easy-toast'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import RNFS from 'react-native-fs'

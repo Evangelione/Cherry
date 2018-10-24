@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { Header } from 'react-native-elements'
 import Toast from 'react-native-easy-toast'
-import Iconfont from 'react-native-vector-icons/Iconfont'
+import Iconfont from '../common/Iconfont'
 import { withNavigation } from 'react-navigation'
 
 

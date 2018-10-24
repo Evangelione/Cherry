@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
 import { Input } from 'react-native-elements'
 import CustomizeHeader from '../../components/Header'
-import Iconfont from 'react-native-vector-icons/Iconfont'
+import Iconfont from '../../common/Iconfont'
 
 class ModifyInfo extends Component {
   constructor(props) {
