@@ -163,8 +163,6 @@ export default class Mine extends Component {
     }]
     return (
       <View style={{flex: 1}}>
-        <StatusBar backgroundColor={this.state.showAvatar ? 'black' : 'transparent'}
-                   translucent={!this.state.showAvatar}></StatusBar>
         <ImageBackground style={styles.imageBackground}
                          source={require('../../asset/images/bg.png')}>
           <View style={styles.userBox}>

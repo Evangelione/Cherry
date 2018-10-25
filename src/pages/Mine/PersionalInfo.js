@@ -80,7 +80,6 @@ export default class PersionalInfo extends Component {
     }]
     return (
       <View>
-        <StatusBar barStyle='dark-content' translucent={true} backgroundColor='transparent'/>
         <CustomizeHeader title='个人资料' backgroundColor='#fff'/>
         <ScrollView>
           <TouchableOpacity style={{marginTop: 10, marginBottom: 10}} activeOpacity={0.6} onPress={this.pressAvatar}>

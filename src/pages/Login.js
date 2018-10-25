@@ -156,7 +156,7 @@ export default class Login extends Component {
     return (
       // View 用以适配iPhoneX
       <View style={[globalStyle.container, globalStyle.center, localStyle.wrapper]}>
-        <StatusBar translucent={true} backgroundColor={'transparent'}/>
+        <StatusBar translucent={true} backgroundColor='transparent'/>
         <View style={{width: 80 * RVW}}>
           <View style={{marginVertical: 3 * RVW, flexDirection: 'row', justifyContent: 'center'}}>
             <Image style={{width: 50 * RVW, height: 20 * RVW}} source={require('../asset/images/logo.png')}/>
