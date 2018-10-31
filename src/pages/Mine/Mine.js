@@ -101,8 +101,9 @@ export default class Mine extends Component {
     // })
   }
 
-  pressItem = () => {
+  pressItem = (linkPage) => {
     console.log('pressItem')
+    this.props.navigation.navigate(linkPage)
   }
 
   renderRightItem = (item) => {
@@ -127,39 +128,49 @@ export default class Mine extends Component {
       title: '余额',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/balance.png')}/>,
       count: this.props.User.balance,
+      linkPage: 'MyBalance',
     }, {
       title: '收益',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/income.png')}/>,
       count: this.props.User.income,
+      linkPage: 'MyBalance',
     }]
     const list2 = [{
       title: '照片墙（增加曝光度）',
       icon: <Image style={{width: 22, height: 19}} source={require('../../asset/images/photowall.png')}/>,
+      linkPage: 'MyBalance',
     }, {
       title: '技能宝库',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/skill.png')}/>,
+      linkPage: 'MyBalance',
     }]
     const list3 = [{
       title: '身份认证',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/idconfirm.png')}/>,
       certifications: this.props.User.certifications,
+      linkPage: 'MyBalance',
     }, {
       title: '邀请获利',
       icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/invite.png')}/>,
       badge: this.props.User.invitebadge,
+      linkPage: 'MyBalance',
     }, {
       title: '设置',
       icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/setting.png')}/>,
+      linkPage: 'MyBalance',
     }]
     const list4 = [{
       title: '粉丝',
       count: this.props.User.fans,
+      linkPage: 'MyBalance',
     }, {
       title: '关注',
       count: this.props.User.follow,
+      linkPage: 'MyBalance',
     }, {
       title: '动态圈',
       count: this.props.User.discovery,
+      linkPage: 'MyBalance',
     }]
     return (
       <View style={{flex: 1}}>
@@ -215,7 +226,7 @@ export default class Mine extends Component {
         <ScrollView style={{flex: 1}}>
           <View>
             {list.map((item, i) => (
-              <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem}>
+              <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem.bind(null, item.linkPage)}>
                 <View>
                   <ListItem
                     key={i}

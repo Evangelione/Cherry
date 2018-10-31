@@ -1,32 +1,17 @@
 import React, { Component } from 'react'
 import { Text, TouchableOpacity } from 'react-native'
-import { inject, observer } from 'mobx-react'
 import { Header } from 'react-native-elements'
-import Toast from 'react-native-easy-toast'
 import Iconfont from '../common/Iconfont'
 import { withNavigation } from 'react-navigation'
 
-
-@inject('User')
-@observer
 class CustomizeHeader extends Component {
 
   navigateBack = () => {
     this.props.navigation.goBack()
   }
 
-  determine = () => {
-    const {title, setkey, settext} = this.props
-    if (settext === '') {
-      this.toast.show(`${title}不能为空！`)
-      return false
-    }
-    this.props.User.update(setkey, settext)
-    this.navigateBack()
-  }
-
   render() {
-    const {title, backgroundColor, determine} = this.props
+    const {title, backgroundColor, handler, handlertitle, handlermethod} = this.props
     return (
       <>
         <Header backgroundColor={backgroundColor}>
@@ -34,11 +19,10 @@ class CustomizeHeader extends Component {
             <Iconfont name='zuojiantou' size={18} color='#6C6C6C'/>
           </TouchableOpacity>
           <Text style={{fontSize: 18, color: '#3e3e3e'}}>{title}</Text>
-          {determine ? <TouchableOpacity onPress={this.determine} style={{padding: 10}}>
-            <Text style={{color: '#FD798F'}}>完成</Text>
+          {handler ? <TouchableOpacity onPress={handlermethod} style={{padding: 10}}>
+            <Text style={{color: '#FD798F'}}>{handlertitle}</Text>
           </TouchableOpacity> : ''}
         </Header>
-        <Toast ref={ref => this.toast = ref} position='center'/>
       </>
     )
   }

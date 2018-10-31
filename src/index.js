@@ -5,6 +5,8 @@ import Explore from './pages/Explore/Explore'
 import RandomStream from './pages/RandomStream/RandomStream'
 import Mine from './pages/Mine/Mine'
 import PersionalInfo from './pages/Mine/PersionalInfo'
+import MyBalance from './pages/Mine/MyBalance'
+import MyBalanceDetail from './pages/Mine/MyBalanceDetail'
 import Login from './pages/Login'
 import ModifyInfo from './pages/Mine/ModifyInfo'
 
@@ -80,8 +82,10 @@ const AppStack = createMaterialTopTabNavigator({
 
 const PageStack = createStackNavigator({
   App: AppStack,
-  PersionalInfo: PersionalInfo,
-  ModifyInfo: ModifyInfo,
+  PersionalInfo,
+  ModifyInfo,
+  MyBalance,
+  MyBalanceDetail,
 }, {
   initialRouteName: 'App',
   navigationOptions: {

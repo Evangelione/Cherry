@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { inject, observer } from 'mobx-react'
 import { Input } from 'react-native-elements'
 import CustomizeHeader from '../../components/Header'
 import Iconfont from '../../common/Iconfont'
+import Toast from 'react-native-easy-toast'
 
+@inject('User')
+@observer
 class ModifyInfo extends Component {
   constructor(props) {
     super(props)
@@ -66,20 +70,32 @@ class ModifyInfo extends Component {
     return element
   }
 
-  render() {
+  determine = () => {
+    const title = this.props.navigation.getParam('title', '')
+    const key = this.props.navigation.getParam('key', '')
     const {text} = this.state
+    if (text === '') {
+      this.toast.show(`${title}不能为空！`)
+      return false
+    }
+    this.props.User.update(key, text)
+    this.props.navigation.goBack()
+  }
+
+  render() {
     const {navigation} = this.props
-    const key = navigation.getParam('key', '')
     const title = navigation.getParam('title', '')
     return (
       <View style={{flex: 1}}>
-        <CustomizeHeader title={`修改${title}`} backgroundColor='#fff'
-                         determine={true}
-                         setkey={key}
-                         settext={text}/>
+        <CustomizeHeader title={`修改${title}`}
+                         backgroundColor='#fff'
+                         handler={true}
+                         handlertitle='完成'
+                         handlermethod={this.determine}/>
         <View style={{flex: 1, flexDirection: 'row'}}>
           {this.renderItem()}
         </View>
+        <Toast ref={ref => this.toast = ref} position='center'/>
       </View>
     )
   }
