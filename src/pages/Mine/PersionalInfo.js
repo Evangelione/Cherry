@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { View, Text, TouchableOpacity, StatusBar, ScrollView, Image, Clipboard } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, Image, Clipboard } from 'react-native'
 import { ListItem, Divider } from 'react-native-elements'
 import ImagePicker from 'react-native-image-crop-picker'
 import CustomizeHeader from '../../components/Header'

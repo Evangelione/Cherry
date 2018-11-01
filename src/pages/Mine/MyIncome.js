@@ -1,29 +1,16 @@
 import React, { Component } from 'react'
-import { View, ScrollView, TouchableWithoutFeedback, Text, ImageBackground, StyleSheet } from 'react-native'
+import { View, Text, ImageBackground, StyleSheet } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { Button } from 'react-native-elements'
 import CustomizeHeader from '../../components/Header'
-import { BalanceList } from '../../common/listData'
 import { baseRedColor } from '../../themes'
 
 @inject('User')
 @observer
 export default class MyIncome extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentItem: 1,
-    }
-  }
 
   goBalanceDetailPage = () => {
     this.props.navigation.navigate('MyBalanceDetail')
-  }
-
-  pressItem = (item, i) => {
-    this.setState({
-      currentItem: i,
-    })
   }
 
   render() {

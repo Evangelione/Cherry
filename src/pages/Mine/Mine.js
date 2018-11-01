@@ -139,7 +139,7 @@ export default class Mine extends Component {
     const list2 = [{
       title: '照片墙（增加曝光度）',
       icon: <Image style={{width: 22, height: 19}} source={require('../../asset/images/photowall.png')}/>,
-      linkPage: 'MyBalance',
+      linkPage: 'PhotoWall',
     }, {
       title: '技能宝库',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/skill.png')}/>,
@@ -245,7 +245,7 @@ export default class Mine extends Component {
           </View>
           <View style={{marginTop: 10}}>
             {list2.map((item, i) => (
-              <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem}>
+              <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem.bind(null, item.linkPage)}>
                 <View>
                   <ListItem
                     key={i}

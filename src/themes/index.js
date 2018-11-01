@@ -4,6 +4,9 @@ export const baseRedColor = '#FD798F'
 export const baseGreenColor = '#48C921'
 export const baseBlueColor = '#0091e4'
 export const lightBlueColor = '#a5d8ff'
+export const titleBlack = '#3E3E3E'
+export const detailGray = '#9B9B9B'
+export const dividerColor = '#EEEEEE'
 
 export const globalStyle = {
   container: {

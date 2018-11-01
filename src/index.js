@@ -8,6 +8,7 @@ import PersionalInfo from './pages/Mine/PersionalInfo'
 import MyBalance from './pages/Mine/MyBalance'
 import MyBalanceDetail from './pages/Mine/MyBalanceDetail'
 import MyIncome from './pages/Mine/MyIncome'
+import PhotoWall from './pages/Mine/PhotoWall'
 
 import Login from './pages/Login'
 import ModifyInfo from './pages/Mine/ModifyInfo'
@@ -89,6 +90,7 @@ const PageStack = createStackNavigator({
   MyBalance,
   MyBalanceDetail,
   MyIncome,
+  PhotoWall,
 }, {
   initialRouteName: 'App',
   navigationOptions: {
