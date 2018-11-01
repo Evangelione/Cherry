@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
 import { View, ScrollView, TouchableWithoutFeedback, Text, ImageBackground, StyleSheet } from 'react-native'
+import { inject, observer } from 'mobx-react'
 import { Button } from 'react-native-elements'
 import CustomizeHeader from '../../components/Header'
-import { BalanceList } from '../../common/listConfig'
+import { BalanceList } from '../../common/listData'
+import { baseRedColor } from '../../themes'
 
+@inject('User')
+@observer
 export default class MyBalance extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      currentItem: 1,
+    }
+  }
+
   goBalanceDetailPage = () => {
     this.props.navigation.navigate('MyBalanceDetail')
   }
 
-  pressItem = (item) => {
-    console.log(item)
+  pressItem = (item, i) => {
+    this.setState({
+      currentItem: i,
+    })
   }
 
   render() {
@@ -22,7 +35,7 @@ export default class MyBalance extends Component {
                          handlertitle='明细'
                          handlermethod={this.goBalanceDetailPage}/>
         <ImageBackground style={styles.imageBackground} source={require('../../asset/images/cherry.png')}>
-          <Text style={{fontSize: 48, color: '#fff'}}>123</Text>
+          <Text style={{fontSize: 48, color: '#fff'}}>{this.props.User.balance}</Text>
           <Text style={{fontSize: 16, color: '#fff'}}>我的樱花币</Text>
         </ImageBackground>
         <ScrollView style={{marginTop: 10, backgroundColor: '#fff'}}>
@@ -31,23 +44,23 @@ export default class MyBalance extends Component {
             return i % 2 === 0
           }).map((item, i) => (
             <View key={i} style={{flexDirection: 'row', paddingLeft: 5, paddingRight: 5}}>
-              <TouchableWithoutFeedback onPress={this.pressItem.bind(null, item)} style={{position: 'relative'}}>
-                <View style={styles.rechargeItem}>
+              <TouchableWithoutFeedback onPress={this.pressItem.bind(null, item, i * 2)} style={{position: 'relative'}}>
+                <View style={[styles.rechargeItem, this.state.currentItem === i * 2 ? styles.currentItem : null]}>
                   <Text>{item.title}</Text>
                   <Text>{item.value}</Text>
                   {item.gift ? <View style={styles.giftBar}>
-                    <Text>{item.gift}</Text>
+                    <Text style={{color: '#fff', fontSize: 12}}>送{item.gift}樱花币</Text>
                   </View> : null}
                 </View>
               </TouchableWithoutFeedback>
-              <TouchableWithoutFeedback onPress={this.pressItem.bind(null, BalanceList[i * 2 + 1])}
+              <TouchableWithoutFeedback onPress={this.pressItem.bind(null, BalanceList[i * 2 + 1], i * 2 + 1)}
                                         style={{position: 'relative'}}>
-                <View style={styles.rechargeItem}>
+                <View style={[styles.rechargeItem, this.state.currentItem === i * 2 + 1 ? styles.currentItem : null]}>
                   <Text>{BalanceList[i * 2 + 1].title}</Text>
                   <Text>{BalanceList[i * 2 + 1].value}</Text>
                   {BalanceList[i * 2 + 1].gift ?
                     <View style={styles.giftBar}>
-                      <Text>{BalanceList[i * 2 + 1].gift}</Text>
+                      <Text style={{color: '#fff', fontSize: 12}}>送{BalanceList[i * 2 + 1].gift}樱花币</Text>
                     </View> : null}
                 </View>
               </TouchableWithoutFeedback>
@@ -58,7 +71,7 @@ export default class MyBalance extends Component {
             titleStyle={{color: '#fff'}}
             onPress={this.login}
             buttonStyle={{
-              backgroundColor: '#FD798F',
+              backgroundColor: baseRedColor,
               marginTop: 50,
               marginLeft: 20,
               marginRight: 20,
@@ -91,7 +104,17 @@ const styles = StyleSheet.create({
   },
   giftBar: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: -1,
+    right: -1,
+    backgroundColor: '#FD798F',
+    paddingTop: 2,
+    paddingBottom: 2,
+    paddingLeft: 4,
+    paddingRight: 4,
+    borderRadius: 4,
+  },
+  currentItem: {
+    borderWidth: 1,
+    borderColor: baseRedColor,
   },
 })

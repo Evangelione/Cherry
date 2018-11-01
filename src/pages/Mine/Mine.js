@@ -18,6 +18,7 @@ import Toast from 'react-native-easy-toast'
 import ImageViewer from 'react-native-image-zoom-viewer'
 import RNFS from 'react-native-fs'
 import { OS } from '../../utils/device'
+import { baseRedColor } from '../../themes'
 
 const BARHEIGHT = StatusBar.currentHeight
 
@@ -110,12 +111,12 @@ export default class Mine extends Component {
     let result = null
     switch (item.title) {
       case '身份认证' :
-        result = item.certifications ? <Text style={{color: '#FD798F'}}>已认证</Text> :
+        result = item.certifications ? <Text style={{color: baseRedColor}}>已认证</Text> :
           <Text style={{color: '#FD798F'}}>未认证</Text>
         break
       case '邀请获利':
         result = item.badge ? <Badge
-          containerStyle={{backgroundColor: '#FD798F', padding: 3, width: 6, height: 6}}
+          containerStyle={{backgroundColor: baseRedColor, padding: 3, width: 6, height: 6}}
           textStyle={{color: 'orange'}}
         /> : null
         break
@@ -133,7 +134,7 @@ export default class Mine extends Component {
       title: '收益',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/income.png')}/>,
       count: this.props.User.income,
-      linkPage: 'MyBalance',
+      linkPage: 'MyIncome',
     }]
     const list2 = [{
       title: '照片墙（增加曝光度）',

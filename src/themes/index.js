@@ -1,8 +1,9 @@
 import { RVW, RFT, RPX } from '../utils/device'
 
+export const baseRedColor = '#FD798F'
+export const baseGreenColor = '#48C921'
 export const baseBlueColor = '#0091e4'
 export const lightBlueColor = '#a5d8ff'
-export const baseRedColor = '#f04d64'
 
 export const globalStyle = {
   container: {

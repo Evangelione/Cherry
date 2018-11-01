@@ -3,6 +3,7 @@ import { Text, TouchableOpacity } from 'react-native'
 import { Header } from 'react-native-elements'
 import Iconfont from '../common/Iconfont'
 import { withNavigation } from 'react-navigation'
+import { baseRedColor } from '../themes'
 
 class CustomizeHeader extends Component {
 
@@ -20,7 +21,7 @@ class CustomizeHeader extends Component {
           </TouchableOpacity>
           <Text style={{fontSize: 18, color: '#3e3e3e'}}>{title}</Text>
           {handler ? <TouchableOpacity onPress={handlermethod} style={{padding: 10}}>
-            <Text style={{color: '#FD798F'}}>{handlertitle}</Text>
+            <Text style={{color: baseRedColor}}>{handlertitle}</Text>
           </TouchableOpacity> : ''}
         </Header>
       </>

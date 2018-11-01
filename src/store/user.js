@@ -16,6 +16,68 @@ class User {
   @observable fans = '63930'
   @observable follow = '70'
   @observable discovery = '130'
+  @observable balancedetail = [{
+    title: '音视频通话',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }, {
+    title: '礼物',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }, {
+    title: '兑换',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '+50',
+  }, {
+    title: '充值',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '+50',
+  }, {
+    title: '音视频通话',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }, {
+    title: '音视频通话',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }]
+  @observable incomedetail = [{
+    title: '音视频通话',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }, {
+    title: '礼物',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }, {
+    title: '兑换',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '+50',
+  }, {
+    title: '充值',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '+50',
+  }, {
+    title: '音视频通话',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }, {
+    title: '音视频通话',
+    day: '08月28日',
+    time: '17 : 30',
+    value: '-50',
+  }]
 
   @action.bound update(key, date) {
     this[key] = date
