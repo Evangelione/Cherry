@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { Button, Divider } from 'react-native-elements'
+import Video from 'react-native-video'
 import CustomizeHeader from '../../components/Header'
 import { baseRedColor, titleBlack, detailGray, dividerColor } from '../../themes'
 
@@ -36,7 +37,10 @@ export default class PhotoWall extends Component {
     if (User.video.length) {
       videoArr = User.video.map(item => (
         <View style={styles.imageView} key={item}>
-          <Image style={styles.image} source={{uri: item}}/>
+          <Video ref={ref => this.player = ref}
+                 style={styles.image}
+                 source={{uri: item}}
+                 controls={true}/>
           <TouchableOpacity style={styles.delImage} onPress={this.delPhoto}>
             <Text style={styles.X}>×</Text>
           </TouchableOpacity>

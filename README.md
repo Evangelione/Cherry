@@ -99,3 +99,5 @@
 26. yarn add react-native-tab-view 替代上门那个没人管的库(页签切换)
 
 27. yarn add rn-fetch-blob(上传文件)
+
+28. yarn add react-native-video(视频播放组件)
