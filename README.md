@@ -93,3 +93,9 @@
 23. yarn add react-native-actionsheet(底部弹出选择)
 
 24. yarn add react-native-datepicker(时间选择插件)
+
+25. yarn add react-native-parallax-scroll-view(视察插件)
+
+26. yarn add react-native-tab-view 替代上门那个没人管的库(页签切换)
+
+27. yarn add rn-fetch-blob(上传文件)
