@@ -101,3 +101,5 @@
 27. yarn add rn-fetch-blob(上传文件)
 
 28. yarn add react-native-video(视频播放组件)
+
+29. yarn add react-native-modal(模态框)

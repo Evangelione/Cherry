@@ -9,15 +9,31 @@ import { baseRedColor, titleBlack, detailGray, dividerColor } from '../../themes
 @inject('User')
 @observer
 export default class PhotoWall extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      photos: [],
+      video: {},
+    }
+  }
+
+  componentDidMount() {
+    console.log(this.props.User.photos)
+    this.setState({
+      photos: [...this.props.User.photos],
+      video: {...this.props.User.video},
+    })
+  }
+
   renderPhotos = () => {
-    const {User} = this.props
+    const {photos} = this.state
     let photoArr = []
     for (let i = 0; i < 4; i++) {
-      if (i < User.photos.length) {
+      if (i < photos.length) {
         photoArr.push(
           <View style={styles.imageView} key={i}>
-            <Image style={styles.image} source={{uri: User.photos[i]}}/>
-            <TouchableOpacity style={styles.delImage} onPress={this.delPhoto}>
+            <Image style={styles.image} source={{uri: photos[i]}}/>
+            <TouchableOpacity style={styles.delImage} onPress={this.deltePhoto.bind(null, photos[i])}>
               <Text style={styles.X}>×</Text>
             </TouchableOpacity>
           </View>)
@@ -31,13 +47,13 @@ export default class PhotoWall extends Component {
   }
 
   renderVideo = () => {
-    const {User} = this.props
+    const {video} = this.state
     let videoArr = []
-    if (User.video.videoCover) {
+    if (video.videoCover) {
       videoArr.push(
         <View style={styles.imageView} key='video'>
           <VideoPlayer videoWidth={76} videoHeight={76}/>
-          <TouchableOpacity style={styles.delImage} onPress={this.delPhoto}>
+          <TouchableOpacity style={styles.delImage} onPress={this.delteVideo}>
             <Text style={styles.X}>×</Text>
           </TouchableOpacity>
         </View>,
@@ -50,8 +66,26 @@ export default class PhotoWall extends Component {
     return videoArr
   }
 
-  delPhoto = (url) => {
+  deltePhoto = (url) => {
+    const index = this.state.photos.indexOf(url)
+    let photos = this.state.photos
+    photos.splice(index, 1)
+    this.setState({
+      photos,
+    })
 
+  }
+
+  delteVideo = () => {
+    this.setState({
+      video: {},
+    })
+  }
+
+  saveChange = () => {
+    this.props.User.photos = this.state.photos
+    this.props.User.video = this.state.video
+    this.props.navigation.goBack()
   }
 
   render() {
@@ -72,7 +106,7 @@ export default class PhotoWall extends Component {
         <Button
           title="保存"
           titleStyle={{color: '#fff'}}
-          onPress={this.login}
+          onPress={this.saveChange}
           buttonStyle={{
             backgroundColor: baseRedColor,
             borderWidth: 1,
