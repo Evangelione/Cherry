@@ -3,6 +3,7 @@ import { BackHandler, NetInfo, Alert } from 'react-native'
 import { Provider } from 'mobx-react'
 import stores from './src/store'
 import StackNavigator from './src'
+import Orientation from 'react-native-orientation'
 
 export default class App extends Component {
   componentWillMount() {
@@ -14,6 +15,7 @@ export default class App extends Component {
       'connectionChange',
       this.handleConnectivityChange,
     )
+    Orientation.lockToPortrait()
   }
 
   componentWillUnmount() {

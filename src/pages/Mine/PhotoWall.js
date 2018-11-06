@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { Button, Divider } from 'react-native-elements'
-import Video from 'react-native-video'
+import VideoPlayer from '../../components/VideoPlayer'
 import CustomizeHeader from '../../components/Header'
 import { baseRedColor, titleBlack, detailGray, dividerColor } from '../../themes'
 
@@ -14,14 +14,13 @@ export default class PhotoWall extends Component {
     let photoArr = []
     for (let i = 0; i < 4; i++) {
       if (i < User.photos.length) {
-        photoArr = User.photos.map(item => (
+        photoArr.push(
           <View style={styles.imageView} key={i}>
-            <Image style={styles.image} source={{uri: item}}/>
+            <Image style={styles.image} source={{uri: User.photos[i]}}/>
             <TouchableOpacity style={styles.delImage} onPress={this.delPhoto}>
               <Text style={styles.X}>×</Text>
             </TouchableOpacity>
-          </View>
-        ))
+          </View>)
       } else {
         photoArr.push(
           <View style={styles.emptyPhotoBox} key={i}></View>,
@@ -34,21 +33,18 @@ export default class PhotoWall extends Component {
   renderVideo = () => {
     const {User} = this.props
     let videoArr = []
-    if (User.video.length) {
-      videoArr = User.video.map(item => (
-        <View style={styles.imageView} key={item}>
-          <Video ref={ref => this.player = ref}
-                 style={styles.image}
-                 source={{uri: item}}
-                 controls={true}/>
+    if (User.video.videoCover) {
+      videoArr.push(
+        <View style={styles.imageView} key='video'>
+          <VideoPlayer videoWidth={76} videoHeight={76}/>
           <TouchableOpacity style={styles.delImage} onPress={this.delPhoto}>
             <Text style={styles.X}>×</Text>
           </TouchableOpacity>
-        </View>
-      ))
+        </View>,
+      )
     } else {
       videoArr.push(
-        <View style={styles.emptyPhotoBox} key={'empty'}></View>,
+        <View style={styles.emptyPhotoBox} key='empty'></View>,
       )
     }
     return videoArr

@@ -17,7 +17,10 @@ class User {
   @observable follow = '70'
   @observable discovery = '130'
   @observable photos = ['http://5b0988e595225.cdn.sohucs.com/images/20171207/60918cbd27fe4642b2b68668f450abed.jpeg', 'http://uploads.gz2010.cn/allimg/1712/56-1G223150G2-51.jpg', 'http://image.biaobaiju.com/uploads/20180211/00/1518281788-xmNoYwiyBV.jpg']
-  @observable video = ['http://video.pearvideo.com/mp4/adshort/20181101/cont-1467590-13163020_adpkg-ad_hd.mp4']
+  @observable video = {
+    videoUrl: 'http://video.pearvideo.com/mp4/adshort/20181101/cont-1467590-13163020_adpkg-ad_hd.mp4',
+    videoCover: 'http://124.129.157.208:8889/data/uploads/kecheng/2018/01/18/5a600b2c99836.png@0o_0l_220w.png',
+  }
   @observable balancedetail = [{
     title: '音视频通话',
     day: '08月28日',

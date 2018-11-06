@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import MasonryList from '@appandflow/masonry-list'
+import { secToTime } from '../../utils/secToTime'
 
 import { width } from '../../utils/device'
 
@@ -31,24 +32,6 @@ const DATA = Array.from({length: 20}).map((_, i) => ({
   comment: parseInt(Math.random() * 100),
 }))
 
-
-// 时间
-const secToTime = (s) => {
-  let h = 0, m = 0
-  if (s > 60) {
-    m = parseInt(s / 60)
-    s = parseInt(s % 60)
-    if (m > 60) {
-      h = parseInt(i / 60)
-      m = parseInt(i % 60)
-    }
-  }
-  // 补零
-  const zero = (v) => {
-    return (v >> 0) < 10 ? ('0' + v) : v
-  }
-  return (h == 0 ? [zero(m), zero(s)].join(':') : [zero(h), zero(m), zero(s)].join(':'))
-}
 
 export default class Find extends Component {
   constructor(props) {
