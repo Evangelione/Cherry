@@ -19,7 +19,7 @@ export default class VideoPlayScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      videoUrl: 'http://v1-dy.ixigua.com/4f0c700630efc383fd47622f1ad2a5b2/5be15acb/video/m/2204779f5087aa74532b6f190596e822b1e115d7d3f00009d0121a81802/?rc=amt5bXdsO3g7aTMzOmkzM0ApQHRoaGR1KUg5Ojk4MzQzMzU0NDM0NDVvQGgzdSlAZmxkamV6aGhkZi1iNGNnLzRsLV8tLTItMHNzLW8janQ6aTM1LjYtLzUtLjEuMzMuNS06I28jOmEtbyNtbCtiK2p0Og%3D%3D',
+      videoUrl: 'http://v9-dy-z.ixigua.com/36dd019f0bd0857c06e4b165d3840ec2/5be29169/video/m/220691502c5c5074a8f8986af4e441aab56115de6dd00009330687e87c3/?rc=anR0ZTxpZm93aTMzM2kzM0ApQHRoaGR1KTc5PDQ3MzQzMzc0NDM0NDVvQGgzdSlAZmhoZGxkZXpoaGRmcDZnZzBkNmo0Xy0tLS0vc3MtbyNqdDppLzIzNi0zMS0uMjMxNC41LTojbyM6YS1vI2p0XG0rYitqdDo%3D',
       videoCover: 'https://p9-dy.bytecdn.cn/aweme/300x400/e16f000389ad747eb1f8.jpeg',
       videoWidth: this.props.videoWidth,
       videoHeight: this.props.videoHeight,
@@ -36,8 +36,9 @@ export default class VideoPlayScreen extends Component {
     })
   }
 
-  _onPlayError = () => {
+  _onPlayError = (err) => {
     console.log('视频播放失败')
+    console.log(err)
   }
 
   /// 点击了播放按钮

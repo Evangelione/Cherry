@@ -9,6 +9,10 @@ import MyBalance from './pages/Mine/MyBalance'
 import MyBalanceDetail from './pages/Mine/MyBalanceDetail'
 import MyIncome from './pages/Mine/MyIncome'
 import PhotoWall from './pages/Mine/PhotoWall'
+import SkillTreasury from './pages/Mine/SkillTreasury'
+import FansList from './pages/Mine/FansList'
+
+import UserPage from './components/UserPage'
 
 import Login from './pages/Login'
 import ModifyInfo from './pages/Mine/ModifyInfo'
@@ -91,6 +95,9 @@ const PageStack = createStackNavigator({
   MyBalanceDetail,
   MyIncome,
   PhotoWall,
+  SkillTreasury,
+  FansList,
+  UserPage,
 }, {
   initialRouteName: 'App',
   navigationOptions: {

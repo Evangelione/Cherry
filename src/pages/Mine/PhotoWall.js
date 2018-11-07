@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import { inject, observer } from 'mobx-react'
 import { Button, Divider } from 'react-native-elements'
+import ImagePicker from 'react-native-image-crop-picker'
+import RNFetchBlob from 'rn-fetch-blob'
 import VideoPlayer from '../../components/VideoPlayer'
 import CustomizeHeader from '../../components/Header'
 import { baseRedColor, titleBlack, detailGray, dividerColor } from '../../themes'
@@ -18,7 +20,6 @@ export default class PhotoWall extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.User.photos)
     this.setState({
       photos: [...this.props.User.photos],
       video: {...this.props.User.video},
@@ -27,7 +28,7 @@ export default class PhotoWall extends Component {
 
   renderPhotos = () => {
     const {photos} = this.state
-    let photoArr = []
+    let photoArr = [], flag = false, dom = null
     for (let i = 0; i < 4; i++) {
       if (i < photos.length) {
         photoArr.push(
@@ -38,9 +39,18 @@ export default class PhotoWall extends Component {
             </TouchableOpacity>
           </View>)
       } else {
-        photoArr.push(
-          <View style={styles.emptyPhotoBox} key={i}></View>,
-        )
+        if (!flag) {
+          dom = <View style={styles.emptyPhotoBox} key={i}>
+            <TouchableOpacity onPress={this.uploadPhoto}>
+              <Image source={require('../../asset/images/shangchuantupian.png')}
+                     style={{width: 76, height: 76}}/>
+            </TouchableOpacity>
+          </View>
+          flag = true
+        } else {
+          dom = <View style={styles.emptyPhotoBox} key={i}/>
+        }
+        photoArr.push(dom)
       }
     }
     return photoArr
@@ -60,7 +70,12 @@ export default class PhotoWall extends Component {
       )
     } else {
       videoArr.push(
-        <View style={styles.emptyPhotoBox} key='empty'></View>,
+        <View style={styles.emptyPhotoBox} key='empty'>
+          <TouchableOpacity onPress={this.uploadVideo}>
+            <Image source={require('../../asset/images/shangchuanshipin.png')}
+                   style={{width: 76, height: 76}}/>
+          </TouchableOpacity>
+        </View>,
       )
     }
     return videoArr
@@ -79,6 +94,49 @@ export default class PhotoWall extends Component {
   delteVideo = () => {
     this.setState({
       video: {},
+    })
+  }
+
+  uploadPhoto = () => {
+    ImagePicker.openPicker({
+      cropping: true,
+      width: 300,
+      height: 300,
+      hideBottomControls: true,
+    }).then(image => {
+      console.log(image)
+      let body = [{
+        name: 'image',
+        data: RNFetchBlob.wrap(image.path),
+      }]
+      RNFetchBlob.fetch('POST', 'http://192.168.2.160/app/select/upload-imgs', {
+        // 上传图片要设置Header
+        'Content-Type': 'multipart/form-data',
+      }, body).uploadProgress((written, total) => {
+        // 本地查找进度
+      }).progress((received, total) => {
+        let perent = received / total
+        // 上传进度打印
+        console.log(perent)
+      }).then((response) => response.json()).then((response) => {
+        // 上传信息返回
+        console.log(response)
+      }).catch((error) => {
+        // 错误信息
+        console.log(error)
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+  }
+
+  uploadVideo = () => {
+    ImagePicker.openPicker({
+      mediaType: 'video',
+    }).then(video => {
+      console.log(video)
+    }).catch(e => {
+      console.log(e)
     })
   }
 

@@ -143,7 +143,7 @@ export default class Mine extends Component {
     }, {
       title: '技能宝库',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/skill.png')}/>,
-      linkPage: 'MyBalance',
+      linkPage: 'SkillTreasury',
     }]
     const list3 = [{
       title: '身份认证',
@@ -163,7 +163,7 @@ export default class Mine extends Component {
     const list4 = [{
       title: '粉丝',
       count: this.props.User.fans,
-      linkPage: 'MyBalance',
+      linkPage: 'FansList',
     }, {
       title: '关注',
       count: this.props.User.follow,
@@ -215,7 +215,7 @@ export default class Mine extends Component {
           </View>
           <View style={styles.fanBox}>
             {list4.map((item, i) => (
-              <TouchableOpacity style={styles.fanItem} key={i} activeOpacity={0.6}>
+              <TouchableOpacity style={styles.fanItem} key={i} activeOpacity={0.6} onPress={this.pressItem.bind(null, item.linkPage)}>
                 <Text style={styles.BW16}>{item.count}</Text>
                 <Text style={{color: '#fff'}}>{item.title}</Text>
                 {i !== (list4.length - 1) ?

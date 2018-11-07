@@ -4,6 +4,7 @@ import { Divider } from 'react-native-elements'
 import { inject, observer } from 'mobx-react'
 import CustomizeHeader from '../../components/Header'
 import { baseRedColor, baseGreenColor } from '../../themes'
+import Iconfont from '../../common/Iconfont'
 
 @inject('User')
 @observer
@@ -13,7 +14,7 @@ export default class MyBalance extends Component {
     return (
       <View style={{flex: 1}}>
         <CustomizeHeader title='余额明细' backgroundColor='#fff'/>
-        <View>
+        {User.balancedetail.length ? <View>
           <Text style={styles.description}>系统只保留近一个月的樱花币明细哦</Text>
           <ScrollView style={{backgroundColor: '#fff'}}>
             {User.balancedetail.map((item, i) => (
@@ -29,7 +30,9 @@ export default class MyBalance extends Component {
               </View>
             ))}
           </ScrollView>
-        </View>
+        </View> : <View style={styles.emptyBox}>
+          <Iconfont name='zanwumingxi' size={130} color='#B8B8B8'/>
+        </View>}
       </View>
     )
   }
@@ -73,5 +76,10 @@ const styles = StyleSheet.create({
   red: {
     fontSize: 16,
     color: baseRedColor,
+  },
+  emptyBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
