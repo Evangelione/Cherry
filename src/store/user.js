@@ -86,7 +86,7 @@ class User {
   }]
   @observable fanslist = [{
     id: '3',
-    avatar: 'http://img2.touxiang.cn/file/20180302/de781e4f408909cfff0d7083ebcf72e6.jpg',
+    avatar: 'http://uploads.gz2010.cn/allimg/1712/56-1G223150G2-50.jpg',
     nickname: '一只大白喵',
     gender: '男',
     age: 18,
@@ -106,7 +106,7 @@ class User {
     lasttime: '24',
   }, {
     id: '2',
-    avatar: 'http://img2.touxiang.cn/file/20180302/de781e4f408909cfff0d7083ebcf72e6.jpg',
+    avatar: 'http://image.biaobaiju.com/uploads/20180211/00/1518281788-xmNoYwiyBV.jpg',
     nickname: '一只大白喵',
     gender: '男',
     age: 18,
@@ -126,7 +126,7 @@ class User {
     lasttime: '11',
   }, {
     id: '1',
-    avatar: 'http://img2.touxiang.cn/file/20180302/de781e4f408909cfff0d7083ebcf72e6.jpg',
+    avatar: 'http://img.zcool.cn/community/01db445752ec3c6ac72525ae3786b7.png@1280w_1l_2o_100sh.png',
     nickname: '一只大白喵',
     gender: '女',
     age: 18,
