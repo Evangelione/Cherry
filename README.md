@@ -103,3 +103,38 @@
 28. yarn add react-native-video(视频播放组件)
 
 29. yarn add react-native-modal(模态框)
+
+
+
+
+
+#### 解决this.setComponentRef.bind的问题
+
+```
+下载文件并修改babelrc
+{
+  "plugins": [
+    [
+      "@babel/plugin-transform-flow-strip-types"
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
+  ],
+}
+
+然后运行下面两条命令
+del %appdata%\Temp\react-native-* & cd android & gradlew clean & cd .. & del node_modules/ & npm cache clean --force & yarn install & npm start -- --reset-cache
+
+
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+```

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
 import ParallaxScrollView from 'react-native-parallax-scroll-view'
+import Swiper from 'react-native-swiper'
 import { baseRedColor, baseGreenColor } from '../themes/index'
 import Iconfont from '../common/Iconfont'
 
@@ -19,31 +20,28 @@ export default class UserPage extends Component {
     return (
       <ParallaxScrollView
         ref='ListView'
+        fadeOutForeground={false}
         stickyHeaderHeight={STICKY_HEADER_HEIGHT}
         parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
-        backgroundSpeed={10}
-        renderBackground={() => (
-          <View>
+        renderForeground={() => (
+          <Swiper activeDotColor={baseRedColor} loop={false}>
             <Image source={{
               uri: User.avatar,
               width: window.width,
               height: PARALLAX_HEADER_HEIGHT,
             }}/>
-            <View style={{
-              position: 'absolute',
-              top: 0,
+            <Image source={{
+              uri: User.avatar,
               width: window.width,
               height: PARALLAX_HEADER_HEIGHT,
             }}/>
-          </View>
-        )}
+          </Swiper>
 
+        )}
         renderFixedHeader={() => (
-          <View style={styles.fixedSection}>
-            <TouchableOpacity onPress={this.navigateBack} style={styles.fixedSectionText}>
-              <Iconfont name='zuojiantou' size={18} color='#fff'/>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity activeOpacity={0.6} onPress={this.navigateBack} style={styles.fixedSection}>
+            <Iconfont name='zuojiantou' size={18} color='#fff' style={styles.fixedSectionIcon}/>
+          </TouchableOpacity>
         )}>
         <View style={{height: 500}}>
           <Text>Scroll me</Text>
@@ -55,23 +53,14 @@ export default class UserPage extends Component {
 
 
 const styles = StyleSheet.create({
-  stickySection: {
-    height: STICKY_HEADER_HEIGHT,
-    width: 300,
-    justifyContent: 'flex-end',
-  },
-  stickySectionText: {
-    color: 'white',
-    fontSize: 20,
-    margin: 10,
-  },
   fixedSection: {
-    position: 'absolute',
-    left: 20,
-    bottom: 15,
-  },
-  fixedSectionText: {
     color: '#999',
     fontSize: 20,
+  },
+  fixedSectionIcon: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 40,
+    paddingBottom: 40,
   },
 })
