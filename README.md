@@ -138,3 +138,6 @@ del %appdata%\Temp\react-native-* & cd android & gradlew clean & cd .. & del nod
 
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 ```
+
+
+## ios run-android有时候会提示找不到adb 项目目录下运行 chmod 755 android/gradlew 解决（添加权限）
