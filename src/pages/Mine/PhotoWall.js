@@ -102,29 +102,58 @@ export default class PhotoWall extends Component {
       cropping: true,
       width: 300,
       height: 300,
+      // includeBase64: true,
       hideBottomControls: true,
     }).then(image => {
-      console.log(image)
-      let body = [{
-        name: 'image',
-        data: RNFetchBlob.wrap(image.path),
-      }]
-      RNFetchBlob.fetch('POST', 'http://192.168.2.160/app/select/upload-imgs', {
+      // RNFetchBlob.fs.readFile(image.path, 'base64').then((data) => {
+      //   let body = [{
+      //     name: 'image',
+      //     data: data,
+      //   }]
+      //   RNFetchBlob.fetch('POST', 'http://192.168.2.159/app/select/upload-imgs', {
+      //     // 上传图片要设置Header
+      //     'Content-Type': 'multipart/form-data',
+      //   }, body).uploadProgress((written, total) => {
+      //     // 本地查找进度
+      //   }).progress((received, total) => {
+      //     let perent = received / total
+      //     // 上传进度打印
+      //     console.log(perent)
+      //   }).then((response) => {
+      //     // 上传信息返回
+      //     console.log(response)
+      //     let data = JSON.parse(response.data)
+      //     this.setState({
+      //       photos: [...this.state.photos, data.url]
+      //     })
+      //   }).catch((error) => {
+      //     // 错误信息
+      //     console.log(error)
+      //   })
+      // })
+      RNFetchBlob.fetch('POST', 'http://192.168.2.159/app/select/upload-imgs', {
         // 上传图片要设置Header
         'Content-Type': 'multipart/form-data',
-      }, body).uploadProgress((written, total) => {
+      }, [
+        {name: 'image', filename: modificationDate, type: image.mime, data: RNFetchBlob.wrap(image.path)}
+      ]).uploadProgress((written, total) => {
         // 本地查找进度
       }).progress((received, total) => {
         let perent = received / total
         // 上传进度打印
         console.log(perent)
-      }).then((response) => response.json()).then((response) => {
+      }).then((response) => {
         // 上传信息返回
         console.log(response)
+        // let data = JSON.parse(response.data)
+        // this.setState({
+        //   photos: [...this.state.photos, data.url]
+        // })
       }).catch((error) => {
         // 错误信息
         console.log(error)
       })
+
     }).catch(e => {
       console.log(e)
     })
@@ -134,7 +163,65 @@ export default class PhotoWall extends Component {
     ImagePicker.openPicker({
       mediaType: 'video',
     }).then(video => {
+      // RNFetchBlob.fs.readStream(video.path, 'base64').then((stream) => {
+      //   let data = ''
+      //   stream.open()
+      //   stream.onData((chunk) => {
+      //     data += chunk
+      //   })
+      //   stream.onEnd(() => {
+      //     console.log(data)
+      //     let body = [{
+      //       name: 'video',
+      //       data: RNFetchBlob.wrap(),
+      //       type: video.mime
+      //     }]
+      //     RNFetchBlob.fetch('POST', 'http://192.168.2.159/app/select/upload-video', {
+      //       // 上传图片要设置Header
+      //       'Content-Type': 'multipart/form-data',
+      //     }, body).uploadProgress((written, total) => {
+      //       // 本地查找进度
+      //     }).progress((received, total) => {
+      //       let perent = received / total
+      //       // 上传进度打印
+      //       console.log(perent)
+      //     }).then((response) => {
+      //       // 上传信息返回
+      //       console.log(response)
+      //       // let data = JSON.parse(response.data)
+      //       // this.setState({
+      //       //   photos: [...this.state.photos, data.url]
+      //       // })
+      //     }).catch((error) => {
+      //       // 错误信息
+      //       console.log(error)
+      //     })
+      //   })
+      //
+      // })
       console.log(video)
+      RNFetchBlob.fetch('POST', 'http://192.168.2.159/app/select/upload-video', {
+        // 上传图片要设置Header
+        'Content-Type': 'multipart/form-data',
+      }, [
+        {name: 'video', filename: video.modificationDate, type: video.mime, data: RNFetchBlob.wrap(video.path)}
+      ]).uploadProgress((written, total) => {
+        // 本地查找进度
+      }).progress((received, total) => {
+        let perent = received / total
+        // 上传进度打印
+        console.log(perent)
+      }).then((response) => {
+        // 上传信息返回
+        console.log(response)
+        // let data = JSON.parse(response.data)
+        // this.setState({
+        //   photos: [...this.state.photos, data.url]
+        // })
+      }).catch((error) => {
+        // 错误信息
+        console.log(error)
+      })
     }).catch(e => {
       console.log(e)
     })

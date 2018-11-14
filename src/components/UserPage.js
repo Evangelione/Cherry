@@ -36,7 +36,13 @@ export default class UserPage extends Component {
               height: PARALLAX_HEADER_HEIGHT,
             }}/>
           </Swiper>
-
+        )}
+        renderBackground={() => (
+          <Image source={{
+            uri: User.avatar,
+            width: window.width,
+            height: PARALLAX_HEADER_HEIGHT,
+          }}/>
         )}
         renderFixedHeader={() => (
           <TouchableOpacity activeOpacity={0.6} onPress={this.navigateBack} style={styles.fixedSection}>
