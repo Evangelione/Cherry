@@ -145,10 +145,10 @@ export default class PhotoWall extends Component {
       }).then((response) => {
         // 上传信息返回
         console.log(response)
-        // let data = JSON.parse(response.data)
-        // this.setState({
-        //   photos: [...this.state.photos, data.url]
-        // })
+        let data = JSON.parse(response.data)
+        this.setState({
+          photos: [...this.state.photos, data.url]
+        })
       }).catch((error) => {
         // 错误信息
         console.log(error)
@@ -214,10 +214,13 @@ export default class PhotoWall extends Component {
       }).then((response) => {
         // 上传信息返回
         console.log(response)
-        // let data = JSON.parse(response.data)
-        // this.setState({
-        //   photos: [...this.state.photos, data.url]
-        // })
+        let data = JSON.parse(response.data)
+        this.setState({
+          video: {
+            videoUrl: data.url,
+            videoCover: 'http://img3.imgtn.bdimg.com/it/u=850016154,2966264409&fm=26&gp=0.jpg'
+          }
+        })
       }).catch((error) => {
         // 错误信息
         console.log(error)
