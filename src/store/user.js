@@ -19,8 +19,8 @@ class User {
   @observable discovery = '130'
   @observable photos = ['http://5b0988e595225.cdn.sohucs.com/images/20171207/60918cbd27fe4642b2b68668f450abed.jpeg', 'http://uploads.gz2010.cn/allimg/1712/56-1G223150G2-51.jpg', 'http://image.biaobaiju.com/uploads/20180211/00/1518281788-xmNoYwiyBV.jpg']
   @observable video = {
-    videoUrl: 'http://video.pearvideo.com/mp4/adshort/20181101/cont-1467590-13163020_adpkg-ad_hd.mp4',
-    videoCover: 'http://124.129.157.208:8889/data/uploads/kecheng/2018/01/18/5a600b2c99836.png@0o_0l_220w.png',
+    videoUrl: 'http://v9-dy-z.ixigua.com/36dd019f0bd0857c06e4b165d3840ec2/5be29169/video/m/220691502c5c5074a8f8986af4e441aab56115de6dd00009330687e87c3/?rc=anR0ZTxpZm93aTMzM2kzM0ApQHRoaGR1KTc5PDQ3MzQzMzc0NDM0NDVvQGgzdSlAZmhoZGxkZXpoaGRmcDZnZzBkNmo0Xy0tLS0vc3MtbyNqdDppLzIzNi0zMS0uMjMxNC41LTojbyM6YS1vI2p0XG0rYitqdDo%3D',
+    videoCover: 'https://p9-dy.bytecdn.cn/aweme/300x400/e16f000389ad747eb1f8.jpeg',
   }
   @observable balancedetail = [{
     title: '音视频通话',

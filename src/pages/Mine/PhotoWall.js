@@ -20,6 +20,7 @@ export default class PhotoWall extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.User.video)
     this.setState({
       photos: [...this.props.User.photos],
       video: {...this.props.User.video},
@@ -62,7 +63,7 @@ export default class PhotoWall extends Component {
     if (video.videoCover) {
       videoArr.push(
         <View style={styles.imageView} key='video'>
-          <VideoPlayer videoWidth={76} videoHeight={76}/>
+          <VideoPlayer videoWidth={76} videoHeight={76} videoUrl={video.videoUrl} videoCover={video.videoCover}/>
           <TouchableOpacity style={styles.delImage} onPress={this.delteVideo}>
             <Text style={styles.X}>×</Text>
           </TouchableOpacity>
