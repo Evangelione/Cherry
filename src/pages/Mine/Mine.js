@@ -149,12 +149,12 @@ export default class Mine extends Component {
       title: '身份认证',
       icon: <Image style={{width: 22, height: 22}} source={require('../../asset/images/idconfirm.png')}/>,
       certifications: this.props.User.certifications,
-      linkPage: 'MyBalance',
+      linkPage: 'Authentication',
     }, {
       title: '邀请获利',
       icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/invite.png')}/>,
       badge: this.props.User.invitebadge,
-      linkPage: 'MyBalance',
+      linkPage: 'InvitingProfit',
     }, {
       title: '设置',
       icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/setting.png')}/>,
@@ -197,7 +197,7 @@ export default class Mine extends Component {
                     }]}
                     onClick={this.toggleAvatar}
                     onSave={this.saveAvatarToLocal}
-                    menuContext={{'saveToLocal': '保存图片', 'cancel': '取消'}}></ImageViewer>
+                    menuContext={{'saveToLocal': '保存图片', 'cancel': '取消'}}/>
                   <Toast ref={ref => this.toast = ref} position='bottom'/>
                 </Modal>
               </TouchableOpacity>
@@ -261,7 +261,7 @@ export default class Mine extends Component {
           </View>
           <View style={{marginTop: 10, marginBottom: 70}}>
             {list3.map((item, i) => (
-              <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem}>
+              <TouchableOpacity key={i} activeOpacity={0.6} onPress={this.pressItem} onPress={this.pressItem.bind(null, item.linkPage)}>
                 <View>
                   <ListItem
                     key={i}

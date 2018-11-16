@@ -11,6 +11,8 @@ import MyIncome from './pages/Mine/MyIncome'
 import PhotoWall from './pages/Mine/PhotoWall'
 import SkillTreasury from './pages/Mine/SkillTreasury'
 import FansList from './pages/Mine/FansList'
+import Authentication from './pages/Mine/Authentication'
+import InvitingProfit from './pages/Mine/InvitingProfit'
 
 import UserPage from './components/UserPage'
 
@@ -98,6 +100,8 @@ const PageStack = createStackNavigator({
   SkillTreasury,
   FansList,
   UserPage,
+  Authentication,
+  InvitingProfit,
 }, {
   initialRouteName: 'App',
   navigationOptions: {
