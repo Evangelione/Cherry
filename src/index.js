@@ -13,6 +13,7 @@ import SkillTreasury from './pages/Mine/SkillTreasury'
 import FansList from './pages/Mine/FansList'
 import Authentication from './pages/Mine/Authentication'
 import InvitingProfit from './pages/Mine/InvitingProfit'
+import Setting from './pages/Mine/Setting'
 
 import UserPage from './components/UserPage'
 
@@ -102,6 +103,7 @@ const PageStack = createStackNavigator({
   UserPage,
   Authentication,
   InvitingProfit,
+  Setting,
 }, {
   initialRouteName: 'App',
   navigationOptions: {

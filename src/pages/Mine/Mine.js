@@ -158,7 +158,7 @@ export default class Mine extends Component {
     }, {
       title: '设置',
       icon: <Image style={{width: 22, height: 20}} source={require('../../asset/images/setting.png')}/>,
-      linkPage: 'MyBalance',
+      linkPage: 'Setting',
     }]
     const list4 = [{
       title: '粉丝',
