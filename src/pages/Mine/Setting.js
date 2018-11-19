@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, ScrollView, Switch, Text, TouchableOpacity } from 'react-native'
 import CustomizeHeader from '../../components/Header'
 import { ListItem, Divider } from 'react-native-elements'
-import { detailGray, dividerColor, baseRedColor } from '../../themes'
+import { detailGray, dividerColor } from '../../themes'
 
 class Setting extends Component {
   constructor(props) {
@@ -68,7 +68,7 @@ class Setting extends Component {
           <TouchableOpacity activeOpacity={0.6}>
             <ListItem
               title='清除缓存'
-              rightElement={<Text style={{color: detailGray}}>20樱花/分钟</Text>}
+              rightElement={<Text style={{color: detailGray}}>13.14MB</Text>}
             />
           </TouchableOpacity>
           <TouchableOpacity activeOpacity={0.6} style={{

@@ -187,7 +187,7 @@ export default class Mine extends Component {
             <View style={styles.avatar}>
               <TouchableOpacity style={styles.avatarPadding} activeOpacity={0.6} onPress={this.toggleAvatar}>
                 <Image
-                  style={{width: 54, height: 54, borderRadius: 40}}
+                  style={{width: 54, height: 54, borderRadius: 27}}
                   source={{uri: this.props.User.avatar}}/>
                 <Modal onRequestClose={this.toggleAvatar} animationType='slide' visible={this.state.showAvatar}
                        transparent={true}>
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
   avatarPadding: {
     width: 56,
     height: 56,
-    borderRadius: 40,
+    borderRadius: 27,
     padding: 1,
     backgroundColor: '#fff',
   },

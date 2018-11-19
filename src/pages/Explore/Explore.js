@@ -14,9 +14,6 @@ export default class Explore extends Component {
       {key: 'Following', title: '关注'},
     ],
   }
-  static navigationOptions = {
-    title: 'Explore',
-  }
 
   renderTabBar = (props) => {
     console.log(props)
