@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import ParallaxScrollView from 'react-native-parallax-scroll-view'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import Modal from 'react-native-modal'
 import Swiper from 'react-native-swiper'
 import { baseRedColor, dividerColor } from '../themes/index'
-import { width } from '../utils/device'
+import { width, height } from '../utils/device'
 import Iconfont from '../common/Iconfont'
 
-const window = Dimensions.get('window')
 const STICKY_HEADER_HEIGHT = 70
 const PARALLAX_HEADER_HEIGHT = 260
 
@@ -15,17 +15,32 @@ export default class UserPage extends Component {
   state = {
     index: 0,
     routes: [
-      {key: 'SKIllS', title: `技能(${this.props.navigation.getParam('user', {}).skills.length})`},
-      {key: 'WORKS', title: `作品(${this.props.navigation.getParam('user', {}).discovery})`},
+      {key: 'SKILLS', title: `技能 (${this.props.navigation.getParam('user', {}).skills.length})`},
+      {key: 'WORKS', title: `作品 (${this.props.navigation.getParam('user', {}).discovery})`},
     ],
+    currentRoute: 'SKILLS',
+    modalFlag: false
   }
   navigateBack = () => {
     this.props.navigation.goBack()
   }
 
+  toggleModal = () => {
+    this.setState({
+      modalFlag: !this.state.modalFlag,
+    })
+  }
+
+  indexChange = (index) => {
+    const currentRoute = this.state.routes[index].key
+    this.setState({
+      index, currentRoute
+    })
+  }
+
   render() {
     const User = this.props.navigation.getParam('user', {})
-    const SKIllS = () => (
+    const SKILLS = () => (
       <View>
         {User.skills.map((item, i) => (
           <View key={i}>
@@ -65,79 +80,101 @@ export default class UserPage extends Component {
         ))}
       </View>
     )
+    const images = <Swiper activeDotColor={baseRedColor} dotColor='#fff' loop={false}>
+      {User.photos.map((item, i) => {
+        return <Image key={i} source={{
+          uri: item.url,
+          width: width,
+          height: (width * item.height) / item.width,
+        }} style={{marginTop: (height - (width * item.height) / item.width) / 2}}/>
+      })}
+    </Swiper>
     return (
-      <ParallaxScrollView
-        ref='ListView'
-        contentBackgroundColor='#EBEBEB'
-        fadeOutForeground={false}
-        stickyHeaderHeight={STICKY_HEADER_HEIGHT}
-        parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
-        renderForeground={() => (
-          <Swiper activeDotColor={baseRedColor} loop={false}>
+      <>
+        <ParallaxScrollView
+          ref='ListView'
+          contentBackgroundColor='#EBEBEB'
+          fadeOutForeground={false}
+          stickyHeaderHeight={STICKY_HEADER_HEIGHT}
+          parallaxHeaderHeight={PARALLAX_HEADER_HEIGHT}
+          renderForeground={() => (
+            <TouchableWithoutFeedback onPress={this.toggleModal}>
+              <Swiper activeDotColor={baseRedColor} loop={false}>
+                <Image source={{
+                  uri: User.avatar,
+                  width: window.width,
+                  height: PARALLAX_HEADER_HEIGHT,
+                }}/>
+                <Image source={{
+                  uri: User.avatar,
+                  width: window.width,
+                  height: PARALLAX_HEADER_HEIGHT,
+                }}/>
+              </Swiper>
+            </TouchableWithoutFeedback>
+          )}
+          renderBackground={() => (
             <Image source={{
               uri: User.avatar,
               width: window.width,
               height: PARALLAX_HEADER_HEIGHT,
             }}/>
-            <Image source={{
-              uri: User.avatar,
-              width: window.width,
-              height: PARALLAX_HEADER_HEIGHT,
-            }}/>
-          </Swiper>
-        )}
-        renderBackground={() => (
-          <Image source={{
-            uri: User.avatar,
-            width: window.width,
-            height: PARALLAX_HEADER_HEIGHT,
-          }}/>
-        )}
-        renderFixedHeader={() => (
-          <TouchableOpacity activeOpacity={0.6} onPress={this.navigateBack} style={styles.fixedSection}>
-            <Iconfont name='zuojiantou' size={18} color='#fff' style={styles.fixedSectionIcon}/>
-          </TouchableOpacity>
-        )}>
-        <View style={styles.scrollContent}>
-          <View>
-            <View style={styles.avatar}>
-              <Image source={{uri: User.avatar, width: 54, height: 54}} style={{borderRadius: 29}}/>
+          )}
+          renderFixedHeader={() => (
+            <TouchableOpacity activeOpacity={0.6} onPress={this.navigateBack} style={styles.fixedSection}>
+              <Iconfont name='zuojiantou' size={18} color='#fff' style={styles.fixedSectionIcon}/>
+            </TouchableOpacity>
+          )}>
+          <View style={styles.scrollContent}>
+            <View>
+              <View style={styles.avatar}>
+                <Image source={{uri: User.avatar, width: 54, height: 54}} style={{borderRadius: 29}}/>
+              </View>
+              <Text style={{color: '#4A4A4A', fontSize: 16, marginTop: 6, marginBottom: 2}}>{User.nickname}</Text>
+              <Text style={{color: '#9B9B9B', fontSize: 14, marginBottom: 12}}>ID：{User.id}</Text>
             </View>
-            <Text style={{color: '#4A4A4A', fontSize: 16, marginTop: 6, marginBottom: 2}}>{User.nickname}</Text>
-            <Text style={{color: '#9B9B9B', fontSize: 14, marginBottom: 12}}>ID：{User.id}</Text>
+            <View style={{flexDirection: 'row', justifyContent: 'space-around', paddingTop: 12}}>
+              <Text style={{fontSize: 12, color: '#5F5F5F'}}>粉丝：{User.fans}</Text>
+              <View style={{
+                width: 2,
+                height: 12,
+                backgroundColor: '#D9D9D9',
+                marginLeft: 14,
+                marginRight: 14,
+                marginTop: 3
+              }}/>
+              <Text style={{fontSize: 12, color: '#5F5F5F'}}>关注：{User.follow}</Text>
+            </View>
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-around', paddingTop: 12}}>
-            <Text style={{fontSize: 12, color: '#5F5F5F'}}>粉丝：{User.fans}</Text>
-            <View style={{
-              width: 2,
-              height: 12,
-              backgroundColor: '#D9D9D9',
-              marginLeft: 14,
-              marginRight: 14,
-              marginTop: 3
-            }}/>
-            <Text style={{fontSize: 12, color: '#5F5F5F'}}>关注：{User.follow}</Text>
+          <View style={{marginTop: 10, marginBottom: 10, padding: 14, backgroundColor: '#fff'}}>
+            <Text style={{color: '#BBBBBB', fontSize: 12}}>{User.signature}</Text>
           </View>
-        </View>
-        <View style={{marginTop: 10, marginBottom: 10, padding: 14, backgroundColor: '#fff'}}>
-          <Text style={{color: '#BBBBBB', fontSize: 12}}>{User.signature}</Text>
-        </View>
-        <View style={{backgroundColor: '#fff', height: 300}}>
-          <TabView
-            navigationState={this.state}
-            onIndexChange={index => this.setState({index})}
-            renderScene={SceneMap({SKIllS, WORKS})}
-            renderTabBar={props =>
-              <TabBar
-                {...props}
-                style={{backgroundColor: '#fff', elevation: 0, borderBottomWidth: 1, borderBottomColor: '#eee'}}
-                labelStyle={{color: '#5F5F5F'}}
-                indicatorStyle={{backgroundColor: baseRedColor, width: 20, left: ((width / 2 - 20) / 2)}}
-              />
-            }
-          />
-        </View>
-      </ParallaxScrollView>
+          <View style={{backgroundColor: '#fff', height: 300}}>
+            <TabView
+              navigationState={this.state}
+              onIndexChange={this.indexChange}
+              renderScene={SceneMap({SKILLS, WORKS})}
+              renderTabBar={props =>
+                <TabBar
+                  {...props}
+                  style={{backgroundColor: '#fff', elevation: 0, borderBottomWidth: 1, borderBottomColor: '#eee'}}
+                  labelStyle={{color: '#5F5F5F'}}
+                  indicatorStyle={{backgroundColor: baseRedColor, width: 20, left: ((width / 2 - 20) / 2)}}
+                  renderLabel={({route}) => {
+                    const color = (this.state.currentRoute === route.key) ? baseRedColor : '#354751'
+                    return <Text style={{color: color, fontSize: 14,paddingTop: 8, paddingBottom: 8}}>{route.title}</Text>
+                  }}
+                />
+              }
+            />
+          </View>
+        </ParallaxScrollView>
+        <Modal onRequestClose={this.toggleModal} animationType='slide' visible={this.state.modalFlag}
+               transparent={true}
+               style={{width: width, height: height, margin: 0, backgroundColor: '#000', justifyContent: 'center'}}>
+          {images}
+        </Modal>
+      </>
     )
   }
 }
